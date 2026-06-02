@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Calculator {
 
     public static void main(String[] args) {
-        double liczba1, liczba2, wynik = 0.0;
+        double wynik = 0.0;
         String inputExpression;
         char operator = ' ';
 
@@ -20,14 +20,15 @@ public class Calculator {
 
             var elementExpression = inputExpression.split(" ");
 
-            System.out.println(elementExpression);
-
             if (!isCorrectExpression(elementExpression)) {
                 continue;
             }
+            operator = elementExpression[1].charAt(0);
 
-//            wynik = getResultMathematicOperation(liczba1, liczba2, operator);
-//            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
+            wynik = getResultMathematicOperation(
+                    Double.parseDouble(elementExpression[0]),
+                    Double.parseDouble(elementExpression[2]), operator);
+            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
 
             System.out.print("Chce wykonać kolejne działanie (y/n)?   ");
             operator = scanner.nextLine().charAt(0);
@@ -60,6 +61,7 @@ public class Calculator {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 
+    @Deprecated
     private static double getNumberFromUser(Scanner scanner) {
         double returnNumber = scanner.nextDouble();
         scanner.nextLine();
@@ -73,6 +75,7 @@ public class Calculator {
             case '*' -> num1 * num2;
             case '/' -> {
                 if (num2 == 0) {
+                    System.out.println("Nie można dzielić przez 0");
                     yield Double.NaN;
                 }
 
