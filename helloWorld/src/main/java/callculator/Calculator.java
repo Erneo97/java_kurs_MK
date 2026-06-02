@@ -39,7 +39,7 @@ public class Calculator {
 
     private static boolean isCorrectExpression(String[] str) {
         if (str.length < 3) {
-            System.out.println("Wyrażenie nie dokończone.");
+            System.out.println("Wyrażenie nie dokończone. - Musi mieć postać 'num op num'");
             return false;
         }
 
