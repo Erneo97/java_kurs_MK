@@ -1,9 +1,10 @@
 package callculator;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     public static void main(String[] args) {
         double wynik = 0.0;
@@ -40,22 +41,27 @@ public class Calculator {
 
     private static boolean isCorrectExpression(String[] str) {
         if (str.length < 3) {
-            System.out.println("Wyrażenie nie dokończone. - Musi mieć postać 'num op num'");
+            errorMessage("Wyrażenie nie dokończone. - Musi mieć postać 'num op num'");
             return false;
         }
 
         if (!str[1].matches("[-+/*^%]")) {
-            System.out.println("Dozwolone operacje matematyczne +, -, *, /, ^, %");
+            errorMessage("Dozwolone operacje matematyczne +, -, *, /, ^, %");
             return false;
         }
 
         if (!isNumeric(str[0]) || !isNumeric(str[2])) {
-            System.out.println("Nie można wykonać działania matematycznego bez dwóch liczb.");
+            errorMessage("Nie można wykonać działania matematycznego bez dwóch liczb.");
             return false;
         }
 
         return true;
     }
+
+    static private void errorMessage(String message) {
+        System.out.println(ANSI_RED + message + ANSI_RESET);
+    }
+
 
     private static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
@@ -75,7 +81,7 @@ public class Calculator {
             case '*' -> num1 * num2;
             case '/' -> {
                 if (num2 == 0) {
-                    System.out.println("Nie można dzielić przez 0");
+                    errorMessage("Nie można dzielić przez 0");
                     yield Double.NaN;
                 }
 
