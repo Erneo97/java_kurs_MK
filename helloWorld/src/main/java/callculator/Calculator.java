@@ -1,11 +1,13 @@
 package callculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
 
     public static void main(String[] args) {
         double liczba1, liczba2, wynik = 0.0;
+        String inputExpression;
         char operator = ' ';
 
         Scanner scanner = new Scanner(System.in);
@@ -13,17 +15,16 @@ public class Calculator {
         System.out.println("Prosty kalkulator.");
 
         while (operator != 'n' || Double.isNaN(wynik)) {
-            System.out.print("Podaj liczbę: ");
-            liczba1 = getNumberFromUser(scanner);
+            System.out.print("Podaj wyrażenie: ");
+            inputExpression = scanner.nextLine();
 
-            System.out.print("Podaj liczbę: ");
-            liczba2 = getNumberFromUser(scanner);
+            var elementExpression = inputExpression.split(" ");
 
-            System.out.print("Podaj operator: ");
-            operator = scanner.nextLine().charAt(0);
+            System.out.println(elementExpression);
 
-            wynik = getResultMathematicOperation(liczba1, liczba2, operator);
-            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
+
+//            wynik = getResultMathematicOperation(liczba1, liczba2, operator);
+//            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
 
             System.out.print("Chce wykonać kolejne działanie (y/n)?   ");
             operator = scanner.nextLine().charAt(0);
@@ -32,6 +33,7 @@ public class Calculator {
         System.out.println("Ostatni wynik jest " + (wynik % 2 == 0 ? "parzysty." : "nieparzysty."));
 
     }
+
 
     private static double getNumberFromUser(Scanner scanner) {
         double returnNumber = scanner.nextDouble();
