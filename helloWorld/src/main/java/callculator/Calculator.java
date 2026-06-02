@@ -22,6 +22,9 @@ public class Calculator {
 
             System.out.println(elementExpression);
 
+            if (!isCorrectExpression(elementExpression)) {
+                continue;
+            }
 
 //            wynik = getResultMathematicOperation(liczba1, liczba2, operator);
 //            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
@@ -34,6 +37,28 @@ public class Calculator {
 
     }
 
+    private static boolean isCorrectExpression(String[] str) {
+        if (str.length < 3) {
+            System.out.println("Wyrażenie nie dokończone.");
+            return false;
+        }
+
+        if (!str[1].matches("[-+/*^%]")) {
+            System.out.println("Dozwolone operacje matematyczne +, -, *, /, ^, %");
+            return false;
+        }
+
+        if (!isNumeric(str[0]) || !isNumeric(str[2])) {
+            System.out.println("Nie można wykonać działania matematycznego bez dwóch liczb.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
 
     private static double getNumberFromUser(Scanner scanner) {
         double returnNumber = scanner.nextDouble();
