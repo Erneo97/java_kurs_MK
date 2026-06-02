@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class Calculator {
 
     public static void main(String[] args) {
-        double liczba1, liczba2;
-        Double wynik = 0.0;
+        double liczba1, liczba2, wynik = 0.0;
         char operator = ' ';
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Proszty kalkulator.");
+        System.out.println("Prosty kalkulator.");
+
         while (operator != 'n' || Double.isNaN(wynik)) {
             System.out.print("Podaj liczbę: ");
             liczba1 = getNumberFromUser(scanner);
@@ -22,7 +23,7 @@ public class Calculator {
             operator = scanner.nextLine().charAt(0);
 
             wynik = getResultMathematicOperation(liczba1, liczba2, operator);
-            System.out.println("Wynik: " + (wynik.equals(Double.NaN) ? "Błędna operacja" : wynik));
+            System.out.println("Wynik: " + (Double.isNaN(wynik) ? "Błędna operacja" : wynik));
 
             System.out.print("Chce wykonać kolejne działanie (y/n)?   ");
             operator = scanner.nextLine().charAt(0);
