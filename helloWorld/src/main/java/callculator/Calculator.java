@@ -11,7 +11,7 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Proszty kalkulator.");
-        while( operator != 'n' || Double.isNaN(wynik)) {
+        while (operator != 'n' || Double.isNaN(wynik)) {
             System.out.print("Podaj liczbę: ");
             liczba1 = getNumberFromUser(scanner);
 
@@ -21,35 +21,35 @@ public class Calculator {
             System.out.print("Podaj operator: ");
             operator = scanner.nextLine().charAt(0);
 
-            wynik =  getResultMathematicOperation(liczba1, liczba2, operator);
-            System.out.println("Wynik: " + (wynik.equals(Double.NaN) ? "Błędna operacja" : wynik)  );
+            wynik = getResultMathematicOperation(liczba1, liczba2, operator);
+            System.out.println("Wynik: " + (wynik.equals(Double.NaN) ? "Błędna operacja" : wynik));
 
             System.out.print("Chce wykonać kolejne działanie (y/n)?   ");
             operator = scanner.nextLine().charAt(0);
         }
 
-        System.out.println("Ostatni wynik jest " + ( wynik % 2 == 0 ? "parzysty." : "nieparzysty.") );
+        System.out.println("Ostatni wynik jest " + (wynik % 2 == 0 ? "parzysty." : "nieparzysty."));
 
     }
 
     private static double getNumberFromUser(Scanner scanner) {
         double returnNumber = scanner.nextDouble();
         scanner.nextLine();
-       return returnNumber;
+        return returnNumber;
     }
 
     private static Double getResultMathematicOperation(double num1, double num2, char operator) {
-        return switch( operator ) {
+        return switch (operator) {
             case '+' -> num1 + num2;
             case '-' -> num1 - num2;
             case '*' -> num1 * num2;
             case '/' -> {
-                if( num2 == 0 ) {
+                if (num2 == 0) {
                     yield Double.NaN;
                 }
-                else {
-                    yield  num1 / num2;
-                }
+
+                yield num1 / num2;
+
             }
             case '%' -> num1 % num2;
             case '^' -> Math.pow(num1, num2);
