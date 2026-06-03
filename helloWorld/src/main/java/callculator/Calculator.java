@@ -35,7 +35,6 @@ public class Calculator {
             System.out.print("Chce wykonać kolejne działanie (y/n)?   ");
             operator = scanner.nextLine().charAt(0);
         }
-
         System.out.println("Ostatni wynik jest " + (wynik % 2 == 0 ? "parzysty." : "nieparzysty."));
     }
 
@@ -62,7 +61,6 @@ public class Calculator {
         System.out.println(ANSI_RED + message + ANSI_RESET);
     }
 
-
     private static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
@@ -84,7 +82,6 @@ public class Calculator {
                     errorMessage("Nie można dzielić przez 0");
                     yield Double.NaN;
                 }
-
                 yield num1 / num2;
             }
             case '%' -> num1 % num2;
