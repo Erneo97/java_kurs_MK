@@ -39,7 +39,6 @@ public class PetleZadania {
                 else {
                     System.out.print(" ");
                 }
-
             }
             System.out.println();
         }
@@ -51,7 +50,6 @@ public class PetleZadania {
         }
     }
 
-
     static private final int SIZE_ARRAY = 3;
 
     static private void task3Matrix3_3() {
@@ -62,7 +60,6 @@ public class PetleZadania {
                 array[i][j] = SIZE_ARRAY * i + j + 1;
             }
         }
-
         printArray(array);
     }
 
