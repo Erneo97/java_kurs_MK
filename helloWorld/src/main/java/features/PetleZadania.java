@@ -18,6 +18,16 @@ public class PetleZadania {
         drawPiramideint(height);
 
         task3Matrix3_3();
+
+        System.out.println("\nTesty dla funkcji sprawdzającej unikalność znaków");
+        String testString1 = "password123";
+        System.out.println("Text: '" + testString1 + "' wynik: " +
+                validateUniqueCharactersInPassword(testString1)
+                );
+        String testString2 = "pas$word123";
+        System.out.println("Text: '" + testString2 + "' wynik: " +
+                validateUniqueCharactersInPassword(testString2)
+        );
     }
 
     private static void drawRectangle(int weight, int height) {
@@ -57,6 +67,21 @@ public class PetleZadania {
             }
             System.out.println();
         }
+    }
+
+    static public boolean validateUniqueCharactersInPassword(String password) {
+        char[] characters = new char[password.length()];
+
+        for (int i = 0; i < password.length(); i++) {
+            char letter = password.charAt(i);
+            characters[i] = letter;
+            for (int j = 0; j < i; j++) {
+                if( letter == characters[j]  ) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
