@@ -8,6 +8,7 @@ public class Calculator {
 
     public static void main(String[] args) {
         double wynik = 0.0;
+
         String inputExpression;
         char operator = ' ';
 
@@ -36,7 +37,6 @@ public class Calculator {
         }
 
         System.out.println("Ostatni wynik jest " + (wynik % 2 == 0 ? "parzysty." : "nieparzysty."));
-
     }
 
     private static boolean isCorrectExpression(String[] str) {
@@ -86,7 +86,6 @@ public class Calculator {
                 }
 
                 yield num1 / num2;
-
             }
             case '%' -> num1 % num2;
             case '^' -> Math.pow(num1, num2);
