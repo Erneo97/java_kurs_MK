@@ -65,13 +65,6 @@ public class Calculator {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 
-    @Deprecated
-    private static double getNumberFromUser(Scanner scanner) {
-        double returnNumber = scanner.nextDouble();
-        scanner.nextLine();
-        return returnNumber;
-    }
-
     private static Double getResultMathematicOperation(double num1, double num2, char operator) {
         return switch (operator) {
             case '+' -> num1 + num2;
