@@ -33,7 +33,13 @@ public class PetleZadania {
     private static void drawRectangle(int weight, int height) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < weight; j++) {
-                System.out.print("*");
+                if( i == 0 || j ==0 || i == (height-1) || j == (weight-1)) {
+                    System.out.print("*");
+                }
+                else {
+                    System.out.print(" ");
+                }
+
             }
             System.out.println();
         }
