@@ -28,15 +28,15 @@ public class LIFO {
         Node temp = head;
         Node previous = null;
 
+        if( head.getValue() == searched ) {
+            size--;
+            head = head.getNext();
+            return temp.getValue();
+        }
+
         while (temp != null) {
             if (temp.getValue() == searched) {
-                if (previous == null) {
-                    previous = head;
-                }
                 previous.setNext(temp.getNext());
-                if( previous == head ) {
-                    head = temp.getNext();
-                }
                 size--;
                 return temp.getValue();
             }
