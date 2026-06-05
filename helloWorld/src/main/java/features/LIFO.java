@@ -5,7 +5,7 @@ public class LIFO {
     private Node head = null;
     private int size = 0;
 
-    public void add(int value) {
+    public void add(Integer value) {
         Node newNode = new Node(value, head);
         head = newNode;
         size++;
@@ -21,9 +21,35 @@ public class LIFO {
         return retValue;
     }
 
+    public Integer remove(Integer searched) {
+        if (this.size <= 0) {
+            return null;
+        }
+        Node temp = head;
+        Node previous = null;
+
+        while (temp != null) {
+            if (temp.getValue() == searched) {
+                if (previous == null) {
+                    previous = head;
+                }
+                previous.setNext(temp.getNext());
+                if( previous == head ) {
+                    head = temp.getNext();
+                }
+                size--;
+                return temp.getValue();
+            }
+            previous = temp;
+            temp = temp.getNext();
+        }
+        return null;
+    }
+
     public int size() {
         return size;
     }
+
 
     @Override
     public String toString() {
