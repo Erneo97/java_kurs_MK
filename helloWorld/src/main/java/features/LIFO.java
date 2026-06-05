@@ -26,25 +26,25 @@ public class LIFO {
             return null;
         }
         Node temp = head;
-        Node previous = null;
 
-        if( head.getValue() == searched ) {
+        if (head.getValue() == searched) {
             size--;
             head = head.getNext();
             return temp.getValue();
         }
 
-        while (temp != null) {
-            if (temp.getValue() == searched) {
-                previous.setNext(temp.getNext());
+        while (temp.getNext() != null) {
+            if (temp.getNext() != null && temp.getNext().getValue() == searched) {
+                Integer retValue = temp.getNext().getValue();
+                temp.setNext(temp.getNext().getNext());
                 size--;
-                return temp.getValue();
+                return retValue;
             }
-            previous = temp;
             temp = temp.getNext();
         }
         return null;
     }
+
 
     public int size() {
         return size;

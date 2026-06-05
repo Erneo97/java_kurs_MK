@@ -16,14 +16,15 @@ public class Main {
         }
 
         System.out.println("testy dla remove");
+        lifo.remove(100);
+        System.out.printf("%s  - %d %n", lifo, lifo.size());
+
         lifo.remove(40);
         System.out.printf("%s  - %d %n", lifo, lifo.size());
 
         lifo.remove(10);
         System.out.printf("%s  - %d %n", lifo, lifo.size());
 
-        lifo.remove(100);
-        System.out.printf("%s  - %d %n", lifo, lifo.size());
 
 //        for (int i = 1; i <= 10 ; i++) {
 //            lifo.pop( );
