@@ -8,22 +8,42 @@ import java.util.Locale;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        LIFO lifo = new LIFO();
+        LIFO<Integer> lifoInteger = new LIFO<>();
 
         for (int i = 1; i <= 10; i++) {
-            lifo.add(i * 10);
-            System.out.printf("%s  - %d %n", lifo, lifo.size());
+            lifoInteger.add(i * 10);
+            System.out.printf("%s  - %d %n", lifoInteger, lifoInteger.size());
         }
 
         System.out.println("testy dla remove");
-        lifo.remove(100);
-        System.out.printf("%s  - %d %n", lifo, lifo.size());
+        lifoInteger.remove(100);
+        System.out.printf("%s  - %d %n", lifoInteger, lifoInteger.size());
 
-        lifo.remove(40);
-        System.out.printf("%s  - %d %n", lifo, lifo.size());
+        lifoInteger.remove(40);
+        System.out.printf("%s  - %d %n", lifoInteger, lifoInteger.size());
 
-        lifo.remove(10);
-        System.out.printf("%s  - %d %n", lifo, lifo.size());
+        lifoInteger.remove(10);
+        System.out.printf("%s  - %d %n", lifoInteger, lifoInteger.size());
+
+
+        System.out.println("\n\tTest dla lifo double");
+
+        LIFO<Double> lifoDouble = new LIFO<>();
+
+        for (int i = 1; i <= 10; i++) {
+            lifoDouble.add(i * 100.0);
+            System.out.printf("%s  - %d %n", lifoDouble, lifoDouble.size());
+        }
+
+        System.out.println("testy dla remove");
+        lifoDouble.remove(1000.0);
+        System.out.printf("%s  - %d %n", lifoDouble, lifoDouble.size());
+
+        lifoDouble.remove(400.0);
+        System.out.printf("%s  - %d %n", lifoDouble, lifoDouble.size());
+
+        lifoDouble.remove(100.0);
+        System.out.printf("%s  - %d %n", lifoDouble, lifoDouble.size());
 
 
 //        for (int i = 1; i <= 10 ; i++) {
