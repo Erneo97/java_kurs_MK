@@ -14,10 +14,10 @@ public class LIFO {
         if (size <= 0) {
             return null;
         }
-        int retValue = head.getValue();
+        int returnValue = head.getValue();
         head = head.getNext();
         size--;
-        return retValue;
+        return returnValue;
     }
 
     public Integer remove(Integer searched) {
@@ -34,10 +34,10 @@ public class LIFO {
 
         while (temp.getNext() != null) {
             if (temp.getNext() != null && temp.getNext().getValue() == searched) {
-                Integer retValue = temp.getNext().getValue();
+                Integer returnValue = temp.getNext().getValue();
                 temp.setNext(temp.getNext().getNext());
                 size--;
-                return retValue;
+                return returnValue;
             }
             temp = temp.getNext();
         }
