@@ -1,6 +1,5 @@
 package features;
 
-
 public class LIFO {
     private Node head = null;
     private int size = 0;
@@ -45,11 +44,9 @@ public class LIFO {
         return null;
     }
 
-
     public int size() {
         return size;
     }
-
 
     @Override
     public String toString() {
