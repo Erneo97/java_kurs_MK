@@ -24,22 +24,22 @@ public class LIFO {
         if (this.size <= 0) {
             return null;
         }
-        Node temp = head;
+        Node temporary = head;
 
         if (head.getValue() == searched) {
             size--;
             head = head.getNext();
-            return temp.getValue();
+            return temporary.getValue();
         }
 
-        while (temp.getNext() != null) {
-            if (temp.getNext() != null && temp.getNext().getValue() == searched) {
-                Integer returnValue = temp.getNext().getValue();
-                temp.setNext(temp.getNext().getNext());
+        while (temporary.getNext() != null) {
+            if (temporary.getNext() != null && temporary.getNext().getValue() == searched) {
+                Integer returnValue = temporary.getNext().getValue();
+                temporary.setNext(temporary.getNext().getNext());
                 size--;
                 return returnValue;
             }
-            temp = temp.getNext();
+            temporary = temporary.getNext();
         }
         return null;
     }
@@ -51,10 +51,10 @@ public class LIFO {
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
-        Node temp = head;
-        while (temp != null) {
-            buffer.append(temp.getValue()).append(" ");
-            temp = temp.getNext();
+        Node temporary = head;
+        while (temporary != null) {
+            buffer.append(temporary.getValue()).append(" ");
+            temporary = temporary.getNext();
         }
         return buffer.toString();
     }
