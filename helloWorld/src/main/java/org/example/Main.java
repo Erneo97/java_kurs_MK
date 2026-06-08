@@ -1,6 +1,7 @@
 package org.example;
 
 import features.LIFO;
+import features.Point;
 
 import java.util.Locale;
 
@@ -45,6 +46,25 @@ public class Main {
         lifoDouble.remove(100.0);
         System.out.printf("%s  - %d %n", lifoDouble, lifoDouble.size());
 
+
+        System.out.println("\n\tTest dla lifo point");
+
+        LIFO<Point> lifoPoint = new LIFO<>();
+
+        for (int i = 0; i <= 10; i++) {
+            lifoPoint.add(new Point(i*2.0, i*3.0));
+            System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
+        }
+
+        System.out.println("testy dla remove");
+        lifoPoint.remove(new Point(0.0, 0.0));
+        System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
+
+        lifoPoint.remove(new Point(2.0, 3.0));
+        System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
+
+        lifoPoint.remove(new Point(20.0, 30.0));
+        System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
 
 //        for (int i = 1; i <= 10 ; i++) {
 //            lifo.pop( );
