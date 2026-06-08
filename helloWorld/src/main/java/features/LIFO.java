@@ -1,40 +1,39 @@
 package features;
 
-public class LIFO {
-    private Node head = null;
+public class LIFO <I> {
+    private Node<I> head = null;
     private int size = 0;
 
-    public void add(Integer value) {
-        Node newNode = new Node(value, head);
-        head = newNode;
+    public void add(I value) {
+        head = new Node<>(value, head);
         size++;
     }
 
-    public Integer pop() {
+    public I pop() {
         if (size <= 0) {
             return null;
         }
-        int returnValue = head.getValue();
+        I returnValue = head.getValue();
         head = head.getNext();
         size--;
         return returnValue;
     }
 
-    public Integer remove(Integer searched) {
+    public I remove(I searched) {
         if (this.size <= 0) {
             return null;
         }
-        Node temporary = head;
+        Node<I> temporary = head;
 
-        if (head.getValue() == searched) {
+        if (head.getValue().equals(searched)) {
             size--;
             head = head.getNext();
             return temporary.getValue();
         }
 
         while (temporary.getNext() != null) {
-            if (temporary.getNext() != null && temporary.getNext().getValue() == searched) {
-                Integer returnValue = temporary.getNext().getValue();
+            if (temporary.getNext() != null && temporary.getNext().getValue().equals(searched)) {
+                I returnValue = temporary.getNext().getValue();
                 temporary.setNext(temporary.getNext().getNext());
                 size--;
                 return returnValue;
@@ -51,7 +50,7 @@ public class LIFO {
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
-        Node temporary = head;
+        Node<I> temporary = head;
         while (temporary != null) {
             buffer.append(temporary.getValue()).append(" ");
             temporary = temporary.getNext();
