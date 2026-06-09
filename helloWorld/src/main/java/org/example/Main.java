@@ -3,8 +3,6 @@ package org.example;
 import listaZDowiazaniami.LIFO;
 import listaZDowiazaniami.Point;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         LIFO<Integer> lifoInteger = new LIFO<>();
@@ -63,31 +61,6 @@ public class Main {
 
         lifoPoint.remove(new Point(20.0, 30.0));
         System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
-
-        System.out.print("\nSilnia: " + factiorial(25));
-
-        System.out.print("\nFibonacci: " + fibonacci(0));
-        System.out.print("\nFibonacci: " + fibonacci(1));
-        System.out.print("\nFibonacci: " + fibonacci(5));
-        System.out.print("\nFibonacci: " + fibonacci(19));
-
-    }
-
-    static private long factiorial(long n) {
-        if (n <= 0) { // warunek stopu
-            return 1;
-        }
-        return n * factiorial(n - 1); // krok rekurencyjny
-    }
-
-    static private long fibonacci(long n) {
-        if (n == 0) { // warunek stopu
-            return 0;
-        }
-        if (n == 1) {
-            return 1;
-        }
-        return fibonacci(n - 2) + fibonacci(n - 1);
     }
 
 }
