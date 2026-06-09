@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Fibonacci" />
         <module name="myListLIFO" />
-        <module name="helloWorld" />
+        <module name="calculator" />
       </profile>
     </annotationProcessing>
   </component>
