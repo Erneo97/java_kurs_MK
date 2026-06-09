@@ -66,12 +66,28 @@ public class Main {
 
         System.out.print("\nSilnia: " + factiorial(25));
 
+        System.out.print("\nFibonacci: " + fibonacci(0));
+        System.out.print("\nFibonacci: " + fibonacci(1));
+        System.out.print("\nFibonacci: " + fibonacci(5));
+        System.out.print("\nFibonacci: " + fibonacci(19));
+
     }
 
-    static private int factiorial(int n) {
+    static private long factiorial(long n) {
         if (n <= 0) { // warunek stopu
             return 1;
         }
         return n * factiorial(n - 1); // krok rekurencyjny
     }
+
+    static private long fibonacci(long n) {
+        if (n == 0) { // warunek stopu
+            return 0;
+        }
+        if( n == 1) {
+            return 1;
+        }
+        return fibonacci(n-2) + fibonacci(n - 1);
+    }
+
 }
