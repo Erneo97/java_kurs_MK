@@ -50,7 +50,7 @@ public class Main {
         LIFO<Point> lifoPoint = new LIFO<>();
 
         for (int i = 0; i <= 10; i++) {
-            lifoPoint.add(new Point(i*2.0, i*3.0));
+            lifoPoint.add(new Point(i * 2.0, i * 3.0));
             System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
         }
 
@@ -64,5 +64,14 @@ public class Main {
         lifoPoint.remove(new Point(20.0, 30.0));
         System.out.printf("%s  - %d %n", lifoPoint, lifoPoint.size());
 
+        System.out.print("\nSilnia: " + factiorial(25));
+
+    }
+
+    static private int factiorial(int n) {
+        if (n <= 0) { // warunek stopu
+            return 1;
+        }
+        return n * factiorial(n - 1); // krok rekurencyjny
     }
 }
