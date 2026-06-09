@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/helloWorld/pom.xml" />
         <option value="$PROJECT_DIR$/Fibonacci/pom.xml" />
+        <option value="$PROJECT_DIR$/myListLIFO/pom.xml" />
       </list>
     </option>
   </component>

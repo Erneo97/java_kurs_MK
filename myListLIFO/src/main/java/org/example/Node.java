@@ -1,4 +1,4 @@
-package listaZDowiazaniami;
+package org.example;
 
 public class Node <I> {
     private final I value;

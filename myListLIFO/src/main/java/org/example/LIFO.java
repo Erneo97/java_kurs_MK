@@ -1,4 +1,4 @@
-package listaZDowiazaniami;
+package org.example;
 
 public class LIFO <I> {
     private Node<I> head = null;
