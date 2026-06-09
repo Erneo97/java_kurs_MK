@@ -1,4 +1,4 @@
-package features;
+package listaZDowiazaniami;
 
 import java.util.Scanner;
 

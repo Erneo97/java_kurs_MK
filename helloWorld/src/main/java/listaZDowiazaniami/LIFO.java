@@ -1,4 +1,4 @@
-package features;
+package listaZDowiazaniami;
 
 public class LIFO <I> {
     private Node<I> head = null;

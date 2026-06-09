@@ -1,4 +1,4 @@
-package features;
+package listaZDowiazaniami;
 
 public class Node <I> {
     private final I value;
