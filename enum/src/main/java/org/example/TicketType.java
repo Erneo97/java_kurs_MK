@@ -16,7 +16,8 @@ public enum TicketType {
     }
 
     public static BigDecimal calculateTickerPrice(TicketType type, double basePrice) {
-        return new BigDecimal( type.priceMultiplier).multiply(new BigDecimal(basePrice));
+        return BigDecimal.valueOf(type.priceMultiplier)
+                .multiply(BigDecimal.valueOf(basePrice));
     }
 
     public String getName() {
