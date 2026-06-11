@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="myListLIFO" />
         <module name="calculator" />
+        <module name="Polimorfizm" />
         <module name="Fibonacci" />
         <module name="enum" />
       </profile>
