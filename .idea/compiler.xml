@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Fibonacci" />
         <module name="myListLIFO" />
         <module name="calculator" />
+        <module name="Polimorfizm" />
+        <module name="Fibonacci" />
+        <module name="enum" />
       </profile>
     </annotationProcessing>
   </component>
