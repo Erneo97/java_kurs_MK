@@ -5,4 +5,5 @@ public class ElectricCar implements Car{
     public void starEngine() {
         System.out.println("Silnik elektryczny włączony");
     }
+
 }

@@ -11,7 +11,11 @@
         <module name="Polimorfizm" />
         <module name="Fibonacci" />
         <module name="enum" />
+        <module name="vehicle" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="helloWorld" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
