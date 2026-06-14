@@ -10,5 +10,9 @@ public class Main {
         vehicles.add(new Motorcycle("Junak", "M16 125", 2024, FuelType.PETROL));
         vehicles.add(new Car("Skoda", "Elroq", 2026, FuelType.ELECTRIC, 3));
 
+        for (Vehicle vehicle : vehicles) {
+            vehicle.displayInfo();
+            System.out.println();
+        }
     }
 }

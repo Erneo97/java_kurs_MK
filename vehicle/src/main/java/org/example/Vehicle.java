@@ -15,7 +15,7 @@ abstract class Vehicle {
     }
 
     public void displayInfo() {
-        System.out.printf("%s - %s z roku %d na paliwo: %s", brand, model, year, fuelType.name());
+        System.out.printf("%s - %s z roku %d na paliwo: %s ", brand, model, year, fuelType.name());
     }
 
     public double refuel(double liters) {

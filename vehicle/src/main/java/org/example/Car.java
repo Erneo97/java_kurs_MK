@@ -13,7 +13,7 @@ public class Car extends Vehicle implements Drivable {
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println(" wersja " + doors + " drzwiowa");
+        System.out.print(" wersja " + doors + " drzwiowa");
     }
 
     @Override
