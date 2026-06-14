@@ -12,6 +12,7 @@ abstract class Vehicle {
         this.model = model;
         this.fuelType = fuelType;
         this.year = year;
+        this.fuealTank = MAX_SIZE_FUEAL_TANK;
     }
 
     public void displayInfo() {
@@ -22,8 +23,7 @@ abstract class Vehicle {
         double tankedLiters = liters + fuealTank >= MAX_SIZE_FUEAL_TANK ?
                 MAX_SIZE_FUEAL_TANK - fuealTank : liters;
         fuealTank += tankedLiters;
+        System.out.printf("Zatankowano %.2f z żadanych %.2f\n", tankedLiters, liters);
         return tankedLiters;
     }
-
-
 }
