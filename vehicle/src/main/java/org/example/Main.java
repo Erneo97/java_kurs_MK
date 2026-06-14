@@ -16,12 +16,11 @@ public class Main {
             driveToEmptyTank((Drivable) vehicle);
 
             System.out.println("\tTankowanie paliwa");
-            vehicle.refuel(litersToTank);
-            vehicle.refuel(litersToTank);
+            System.out.printf("Zatankowano %.2f z żadanych %.2f\n", vehicle.refuel(litersToTank), litersToTank);
+            System.out.printf("Zatankowano %.2f z żadanych %.2f\n", vehicle.refuel(litersToTank), litersToTank);
             litersToTank *= 2;
             System.out.println();
         }
-
     }
 
     static void initLists(List<Vehicle> vehicles, List<Drivable> vehiclesDrivable) {
@@ -43,7 +42,7 @@ public class Main {
         double distanceTraveled = 1;
         while (distanceTraveled > 0) {
             distanceTraveled = vehicle.drive(DISTANCE_TO_TRAVEL);
-            System.out.printf("Pojaz pokonał %.2f km\n", distanceTraveled);
+            System.out.printf("Pojazd pokonał %.2f km\n", distanceTraveled);
         }
     }
 }
