@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static final double DISTANCE_TO_TRAVEL = 100;
+
     public static void main(String[] args) {
         List<Vehicle> vehicles = new ArrayList<>();
 
@@ -32,8 +34,6 @@ public class Main {
         Car carSkoda = new Car("Skoda", "Elroq", 2026, FuelType.ELECTRIC, 3);
         vehicles.add(carSkoda);
     }
-
-    private static final double DISTANCE_TO_TRAVEL = 100;
 
     static void driveToEmptyTank(Drivable vehicle) {
         double distanceTraveled = 1;
