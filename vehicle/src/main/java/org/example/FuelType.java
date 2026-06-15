@@ -16,6 +16,4 @@ public enum FuelType {
     public static BigDecimal calculatePrice(FuelType type, double volume) {
         return BigDecimal.valueOf(type.price).multiply(BigDecimal.valueOf(volume));
     }
-
-
 }
