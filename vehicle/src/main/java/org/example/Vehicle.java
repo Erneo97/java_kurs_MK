@@ -1,5 +1,7 @@
 package org.example;
 
+import java.math.BigDecimal;
+
 abstract class Vehicle {
     final static double MAX_SIZE_FUEAL_TANK = 40.0;
     private final String brand, model;
@@ -19,10 +21,10 @@ abstract class Vehicle {
         System.out.printf("%s - %s z roku %d na paliwo: %s ", brand, model, year, fuelType.name());
     }
 
-    public double refuel(double liters) {
+    public BigDecimal refuel(double liters) {
         double tankedLiters = liters + fuealTank >= MAX_SIZE_FUEAL_TANK ?
                 MAX_SIZE_FUEAL_TANK - fuealTank : liters;
         fuealTank += tankedLiters;
-        return tankedLiters;
+        return FuelType.calculatePrice(fuelType, tankedLiters);
     }
 }
