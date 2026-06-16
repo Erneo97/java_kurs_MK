@@ -6,7 +6,6 @@ public class Book extends LibraryItem {
     public Book(String title, String autor, int lenght) {
         super(title, autor, lenght);
         bookCounter++;
-
     }
 
     public static int getBookCounter() {

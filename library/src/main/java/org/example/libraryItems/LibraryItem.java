@@ -5,7 +5,7 @@ public abstract class LibraryItem {
     protected final String autor;
     protected final int lenght;
 
-    public  LibraryItem(String title, String autor, int lenght) {
+    public LibraryItem(String title, String autor, int lenght) {
         this.title = title;
         this.autor = autor;
         this.lenght = lenght;

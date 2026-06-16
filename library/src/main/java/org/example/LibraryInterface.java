@@ -39,7 +39,7 @@ public class LibraryInterface {
 
     private void displayBorrowedItems() {
         for (LibraryItem item : database.keySet()) {
-            if (database.get(item) ==  BorrowItemStatus.BORROWABLE) {
+            if (database.get(item) == BorrowItemStatus.BORROWABLE) {
                 System.out.println(item);
             }
         }
@@ -49,9 +49,9 @@ public class LibraryInterface {
         System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Move.getMoveCounter());
     }
 
-    public LibraryItem borrowItemByTitle(String title) throws  BorrowedItem {
+    public LibraryItem borrowItemByTitle(String title) throws BorrowedItem {
         LibraryItem findItem = findItemByTitle(title);
-        if( findItem == null) {
+        if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
         }
 
@@ -59,12 +59,12 @@ public class LibraryInterface {
             database.put(findItem, BorrowItemStatus.BORROWABLE);
             return findItem;
         }
-        throw new BorrowedItem(String.format("Tytuł: '%s' - jest wypożyczony",  title));
+        throw new BorrowedItem(String.format("Tytuł: '%s' - jest wypożyczony", title));
     }
 
     public LibraryItem findItemByTitle(String title) {
         for (LibraryItem item : database.keySet()) {
-            if( item.getTitle().equals(title) ) {
+            if (item.getTitle().equals(title)) {
                 return item;
             }
         }
@@ -73,7 +73,7 @@ public class LibraryInterface {
 
     public void returnItemByTitle(String title) throws ItemNotBorrowed {
         LibraryItem findItem = findItemByTitle(title);
-        if( findItem == null) {
+        if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
         }
 
