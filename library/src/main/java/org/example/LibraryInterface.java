@@ -15,9 +15,9 @@ public class LibraryInterface {
 
     public void initLibrary() {
         database.put(new Book("Wilk Stepowy", "Hasse", 258), BorrowItemStatus.AVALIABLE);
-        database.put(new Move("Wilk z Wall Street", "Martin Scorsese", 143), BorrowItemStatus.AVALIABLE);
         database.put(new Book("Pszczółka Maja", "Autor", 123), BorrowItemStatus.BORROWABLE);
         database.put(new Book("Noname", "NoName", 222), BorrowItemStatus.AVALIABLE);
+        database.put(new Move("Wilk z Wall Street", "Martin Scorsese", 143), BorrowItemStatus.AVALIABLE);
         database.put(new Move("Openheimer", "Johny Deep", 183), BorrowItemStatus.AVALIABLE);
     }
 
