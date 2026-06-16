@@ -14,10 +14,10 @@ public class Move extends LibraryItem {
 
     @Override
     public String toString() {
-        return "Move{" +
-                "title='" + title + '\'' +
+        return "Film{" +
+                "tytuł='" + title + '\'' +
                 ", autor='" + autor + '\'' +
-                ", lenght=" + lenght +
+                ", długość (min.)=" + lenght +
                 '}';
     }
 }

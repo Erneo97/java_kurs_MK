@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.exeptions.BorrowedItem;
+import org.example.exeptions.ItemNotBorrowed;
 import org.example.exeptions.ItemNotExist;
 import org.example.libraryItems.Book;
 import org.example.libraryItems.LibraryItem;
@@ -67,5 +68,18 @@ public class LibraryInterface {
             }
         }
         return null;
+    }
+
+    public void returnItemByTitle(String title) throws ItemNotBorrowed {
+        LibraryItem findItem = findItemByTitle(title);
+        if( findItem == null) {
+            throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
+        }
+
+        if (database.get(findItem).equals(true)) {
+            database.put(findItem, false);
+            return;
+        }
+        throw new ItemNotBorrowed(String.format("Tytuł: '%s' - nie był wypożyczony", title));
     }
 }

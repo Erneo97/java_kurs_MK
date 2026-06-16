@@ -15,10 +15,10 @@ public class Book extends LibraryItem {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
+        return "Książka{" +
+                "tytuł='" + title + '\'' +
                 ", autor='" + autor + '\'' +
-                ", lenght=" + lenght +
+                ", l. stron=" + lenght +
                 '}';
     }
 }

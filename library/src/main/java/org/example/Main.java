@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.exeptions.BorrowedItem;
+import org.example.exeptions.ItemNotBorrowed;
 import org.example.exeptions.ItemNotExist;
 import org.example.libraryItems.LibraryItem;
 
@@ -29,6 +30,7 @@ public class Main {
             switch (selectedAction) {
                 case 1 -> libraryInterface.displayLibraryItems();
                 case 2 -> borrowItemByTitle(libraryInterface, input);
+                case 3 -> returnItemByTitle(libraryInterface, input);
                 case 4 -> libraryInterface.displayCountBookAndMovie();
                 case 5 -> System.out.println("Do widzenia");
             }
@@ -43,6 +45,17 @@ public class Main {
             LibraryItem item = libraryInterface.borrowItemByTitle(title);
             System.out.println("Wypożyczono " + item.getClass().getSimpleName());
         } catch (ItemNotExist | BorrowedItem e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    static void returnItemByTitle(LibraryInterface libraryInterface, Scanner input) {
+        System.out.print("Podaj tytuł do wypożyczenia: ");
+        String title = input.nextLine();
+        try {
+            libraryInterface.returnItemByTitle(title);
+            System.out.println("Oddano pomyślnie " + title);
+        } catch (ItemNotExist | ItemNotBorrowed e) {
             System.err.println(e.getMessage());
         }
     }
