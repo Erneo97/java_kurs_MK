@@ -11,35 +11,36 @@ import org.example.libraryItems.Move;
 import java.util.HashMap;
 
 public class LibraryInterface {
-    private final HashMap<LibraryItem, BorrowItemStatus> database = new HashMap<>();
+    private static final HashMap<LibraryItem, BorrowItemStatus> database = new HashMap<>();
+    private static boolean initialized = false;
 
-    public void initLibrary() {
+    public LibraryInterface() {
+        initLibrary();
+    }
+
+    private void initLibrary() {
+        if( initialized) {
+            return;
+        }
         database.put(new Book("Wilk Stepowy", "Hasse", 258), BorrowItemStatus.AVALIABLE);
         database.put(new Book("Pszczółka Maja", "Autor", 123), BorrowItemStatus.BORROWABLE);
         database.put(new Book("Noname", "NoName", 222), BorrowItemStatus.AVALIABLE);
         database.put(new Move("Wilk z Wall Street", "Martin Scorsese", 143), BorrowItemStatus.AVALIABLE);
         database.put(new Move("Openheimer", "Johny Deep", 183), BorrowItemStatus.AVALIABLE);
+        initialized = true;
     }
 
     public void displayLibraryItems() {
         System.out.println("\tLista elementów dostępnych");
-        displayAvailableItems();
+        displayItemsByStatus(BorrowItemStatus.AVALIABLE);
 
         System.out.println("\tLista elementów wypożyczonych");
-        displayBorrowedItems();
+        displayItemsByStatus(BorrowItemStatus.BORROWABLE);
     }
 
-    private void displayAvailableItems() {
+    private void displayItemsByStatus(BorrowItemStatus status) {
         for (LibraryItem item : database.keySet()) {
-            if (database.get(item) == BorrowItemStatus.AVALIABLE) {
-                System.out.println(item);
-            }
-        }
-    }
-
-    private void displayBorrowedItems() {
-        for (LibraryItem item : database.keySet()) {
-            if (database.get(item) == BorrowItemStatus.BORROWABLE) {
+            if (database.get(item) == status) {
                 System.out.println(item);
             }
         }
@@ -54,7 +55,6 @@ public class LibraryInterface {
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
         }
-
         if (database.get(findItem).equals(BorrowItemStatus.AVALIABLE)) {
             database.put(findItem, BorrowItemStatus.BORROWABLE);
             return findItem;
@@ -76,7 +76,6 @@ public class LibraryInterface {
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
         }
-
         if (database.get(findItem).equals(BorrowItemStatus.BORROWABLE)) {
             database.put(findItem, BorrowItemStatus.AVALIABLE);
             return;
