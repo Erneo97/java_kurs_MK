@@ -43,7 +43,7 @@ public class Main {
         String title = input.nextLine();
         try {
             LibraryItem item = libraryInterface.borrowItemByTitle(title);
-            System.out.println("Wypożyczono " + item.getClass().getSimpleName());
+            System.out.println("Wypożyczono: " + item.getClass().getSimpleName());
         } catch (ItemNotExist | BorrowedItem e) {
             System.err.println(e.getMessage());
         }
@@ -54,7 +54,7 @@ public class Main {
         String title = input.nextLine();
         try {
             libraryInterface.returnItemByTitle(title);
-            System.out.println("Oddano pomyślnie " + title);
+            System.out.println("Oddano pomyślnie: " + title);
         } catch (ItemNotExist | ItemNotBorrowed e) {
             System.err.println(e.getMessage());
         }
