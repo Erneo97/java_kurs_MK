@@ -1,9 +1,5 @@
 package org.example;
 
-import org.example.libraryItems.LibraryItem;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -28,6 +24,7 @@ public class Main {
             selectedAction = input.nextInt();
             switch (selectedAction) {
                 case 1 -> libraryInterface.displayLibraryItems();
+                case 4 -> libraryInterface.displayCountBookAndMovie();
                 case 5 -> {System.out.println("Do widzenia");}
             }
         }
