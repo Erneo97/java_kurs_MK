@@ -17,5 +17,10 @@ public class LibraryInterface {
         database.add(new Move("Openheimer", "Johny Deep", 183));
     }
 
+    public void displayLibraryItems( ) {
+        for (LibraryItem item : database) {
+            System.out.println(item);
+        }
+    }
 
 }

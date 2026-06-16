@@ -1,9 +1,9 @@
 package org.example.libraryItems;
 
 public abstract class LibraryItem {
-    private String title;
-    private String autor;
-    private int lenght;
+    protected String title;
+    protected String autor;
+    protected int lenght;
 
     public  LibraryItem(String title, String autor, int lenght) {
         this.title = title;

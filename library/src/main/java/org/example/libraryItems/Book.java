@@ -1,6 +1,6 @@
 package org.example.libraryItems;
 
-public class Book extends LibraryItem{
+public class Book extends LibraryItem {
     private static int bookCounter = 0;
 
     public Book(String title, String autor, int lenght) {
@@ -11,5 +11,14 @@ public class Book extends LibraryItem{
 
     public static int getBookCounter() {
         return bookCounter;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", autor='" + autor + '\'' +
+                ", lenght=" + lenght +
+                '}';
     }
 }

@@ -26,7 +26,10 @@ public class Main {
                 5 - Wyjście z programu.
                 Twój wybór: """);
             selectedAction = input.nextInt();
-
+            switch (selectedAction) {
+                case 1 -> libraryInterface.displayLibraryItems();
+                case 5 -> {System.out.println("Do widzenia");}
+            }
         }
         // zw, bo w rpacy jestem i jest sprawa do zrobienia
     }
