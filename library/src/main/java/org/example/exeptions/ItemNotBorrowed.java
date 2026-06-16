@@ -1,6 +1,6 @@
 package org.example.exeptions;
 
-public class ItemNotBorrowed extends RuntimeException {
+public class ItemNotBorrowed extends Exception {
     public ItemNotBorrowed(String message) {
         super(message);
     }
