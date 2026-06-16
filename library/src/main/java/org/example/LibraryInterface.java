@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exeptions.BorrowedItem;
+import org.example.exeptions.ItemNotExist;
 import org.example.libraryItems.Book;
 import org.example.libraryItems.LibraryItem;
 import org.example.libraryItems.Move;
@@ -27,7 +29,7 @@ public class LibraryInterface {
 
     private void displayAvailableItems() {
         for (LibraryItem item : database.keySet()) {
-            if(!database.get(item)) {
+            if (!database.get(item)) {
                 System.out.println(item);
             }
         }
@@ -35,14 +37,35 @@ public class LibraryInterface {
 
     private void displayBorrowedItems() {
         for (LibraryItem item : database.keySet()) {
-            if(database.get(item)) {
+            if (database.get(item)) {
                 System.out.println(item);
             }
         }
     }
 
-    public void displayCountBookAndMovie( ) {
+    public void displayCountBookAndMovie() {
         System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Move.getMoveCounter());
     }
 
+    public LibraryItem borrowItemByTitle(String title) throws  BorrowedItem {
+        LibraryItem findItem = findItemByTitle(title);
+        if( findItem == null) {
+            throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
+        }
+
+        if (database.get(findItem).equals(false)) {
+            database.put(findItem, true);
+            return findItem;
+        }
+        throw new BorrowedItem(String.format("Tytuł: '%s' - jest wypożyczony",  title));
+    }
+
+    public LibraryItem findItemByTitle(String title) {
+        for (LibraryItem item : database.keySet()) {
+            if( item.getTitle().equals(title) ) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
