@@ -1,7 +1,7 @@
 package org.example;
 
 public class Car extends Vehicle implements Drivable {
-    final static double AVERAGE_VEHICLE_COMBUSTION = 7.4;
+    private final static double AVERAGE_VEHICLE_COMBUSTION = 7.4;
 
     private final int doors;
 
@@ -18,10 +18,10 @@ public class Car extends Vehicle implements Drivable {
 
     @Override
     public double drive(double roadTraveled) {
-        double burnedFuel = fuelCombustion(roadTraveled, AVERAGE_VEHICLE_COMBUSTION, fuealTank);
-        fuealTank -= burnedFuel;
+        double burnedFuel = fuelCombustion(roadTraveled, AVERAGE_VEHICLE_COMBUSTION, fuelTank);
+        fuelTank -= burnedFuel;
         double distanceTraveled = calculateDistansTraveled(burnedFuel, AVERAGE_VEHICLE_COMBUSTION);
-        System.out.printf("Samochód przejechał %.2f km - zostało paliwa: %.2f", distanceTraveled, fuealTank);
+        System.out.printf("Samochód przejechał %.2f km - zostało paliwa: %.2f", distanceTraveled, fuelTank);
         return distanceTraveled;
     }
 }

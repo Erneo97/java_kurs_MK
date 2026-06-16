@@ -7,14 +7,14 @@ abstract class Vehicle {
     private final String brand, model;
     private final FuelType fuelType;
     private final int year;
-    protected double fuealTank;
+    protected double fuelTank;
 
     public Vehicle(String brand, String model, int year, FuelType fuelType) {
         this.brand = brand;
         this.model = model;
         this.fuelType = fuelType;
         this.year = year;
-        this.fuealTank = MAX_SIZE_FUEAL_TANK;
+        this.fuelTank = MAX_SIZE_FUEAL_TANK;
     }
 
     public void displayInfo() {
@@ -22,9 +22,19 @@ abstract class Vehicle {
     }
 
     public BigDecimal refuel(double liters) {
-        double tankedLiters = liters + fuealTank >= MAX_SIZE_FUEAL_TANK ?
-                MAX_SIZE_FUEAL_TANK - fuealTank : liters;
-        fuealTank += tankedLiters;
+        double tankedLiters = liters + fuelTank >= MAX_SIZE_FUEAL_TANK ?
+                MAX_SIZE_FUEAL_TANK - fuelTank : liters;
+        fuelTank += tankedLiters;
         return FuelType.calculatePrice(fuelType, tankedLiters);
+    }
+
+
+    protected double fuelCombustion(double roadTraveled, double averageCombustion, double fuelTank) {
+        double fuelBurned = roadTraveled * averageCombustion / 100;
+        return Math.min(fuelBurned, fuelTank);
+    }
+
+    protected double calculateDistansTraveled(double liters, double averageCombustion) {
+        return liters * 100 / averageCombustion;
     }
 }

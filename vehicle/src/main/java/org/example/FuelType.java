@@ -7,7 +7,7 @@ public enum FuelType {
     DISEL(5.30),
     ELECTRIC(2.5);
 
-    double price;
+    final double price; // BigDecimal od razu
 
     private FuelType(double price) {
         this.price = price;

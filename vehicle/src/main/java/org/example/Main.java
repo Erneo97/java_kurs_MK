@@ -16,8 +16,7 @@ public class Main {
             vehicle.displayInfo();
             driveToEmptyTank((Drivable) vehicle);
 
-            System.out.println("\tTankowanie paliwa");
-            System.out.printf("Zatankowano %.2f z żadanych %.2f\n", vehicle.refuel(litersToTank), litersToTank);
+            System.out.printf("\tTankowanie paliwa\nZatankowano %.2f z żadanych %.2f\n", vehicle.refuel(litersToTank), litersToTank);
             System.out.printf("Zatankowano %.2f z żadanych %.2f\n", vehicle.refuel(litersToTank), litersToTank);
             litersToTank *= 2;
             System.out.println();

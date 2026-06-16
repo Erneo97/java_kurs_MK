@@ -8,10 +8,10 @@ public class Motorcycle extends Vehicle implements Drivable {
     }
 
     public double drive(double roadTraveled) {
-        double burnedFuel = fuelCombustion(roadTraveled, AVERAGE_VEHICLE_COMBUSTION, fuealTank);
-        fuealTank -= burnedFuel;
+        double burnedFuel = fuelCombustion(roadTraveled, AVERAGE_VEHICLE_COMBUSTION, fuelTank);
+        fuelTank -= burnedFuel;
         double distanceTraveled = calculateDistansTraveled(burnedFuel, AVERAGE_VEHICLE_COMBUSTION);
-        System.out.printf("Motor przejechał %.2f km - zostało paliwa: %.2f", distanceTraveled, fuealTank);
+        System.out.printf("Motor przejechał %.2f km - zostało paliwa: %.2f", distanceTraveled, fuelTank);
         return distanceTraveled;
     }
 }
