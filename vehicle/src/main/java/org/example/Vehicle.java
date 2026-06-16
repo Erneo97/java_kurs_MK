@@ -1,0 +1,40 @@
+package org.example;
+
+import java.math.BigDecimal;
+
+abstract class Vehicle {
+    final static double MAX_SIZE_FUEAL_TANK = 40.0;
+    private final String brand, model;
+    private final FuelType fuelType;
+    private final int year;
+    protected double fuelTank;
+
+    public Vehicle(String brand, String model, int year, FuelType fuelType) {
+        this.brand = brand;
+        this.model = model;
+        this.fuelType = fuelType;
+        this.year = year;
+        this.fuelTank = MAX_SIZE_FUEAL_TANK;
+    }
+
+    public void displayInfo() {
+        System.out.printf("%s - %s z roku %d na paliwo: %s ", brand, model, year, fuelType.name());
+    }
+
+    public BigDecimal refuel(double liters) {
+        double tankedLiters = liters + fuelTank >= MAX_SIZE_FUEAL_TANK ?
+                MAX_SIZE_FUEAL_TANK - fuelTank : liters;
+        fuelTank += tankedLiters;
+        return FuelType.calculatePrice(fuelType, tankedLiters);
+    }
+
+
+    protected double fuelCombustion(double roadTraveled, double averageCombustion, double fuelTank) {
+        double fuelBurned = roadTraveled * averageCombustion / 100;
+        return Math.min(fuelBurned, fuelTank);
+    }
+
+    protected double calculateDistansTraveled(double liters, double averageCombustion) {
+        return liters * 100 / averageCombustion;
+    }
+}
