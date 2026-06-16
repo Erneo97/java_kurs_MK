@@ -9,14 +9,14 @@ import org.example.libraryItems.LibraryItem;
 import java.util.Scanner;
 
 public class Main {
+    private static final Scanner input = new Scanner(System.in);
+    private static final LibraryInterface libraryInterface = new LibraryInterface();
+
     public static void main(String[] args) {
-        LibraryInterface libraryInterface = new LibraryInterface();
-        libraryInterface.initLibrary();
-        LibraryInterfaceActions selectedAction = LibraryInterfaceActions.NON_EXIST_ACTION;
-        Scanner input = new Scanner(System.in);
+        LibraryInterfaceActions selectedActionLibraryInterface = LibraryInterfaceActions.NON_EXIST_ACTION;
 
         System.out.println("Witamy w bibliotece");
-        while (selectedAction != LibraryInterfaceActions.EXIT) {
+        while (selectedActionLibraryInterface != LibraryInterfaceActions.EXIT) {
             System.out.print("""
                     Dostępne akcje:
                     1- Wyświetlanie listy dostępnych i wypożyczonych elementów.
@@ -25,18 +25,18 @@ public class Main {
                     4 - Wyświetlanie liczby książek i filmów w systemie.
                     5 - Wyjście z programu.
                     Twój wybór:""");
-            int numbrAction = input.nextInt();
+            int selectedAction = input.nextInt();
             input.nextLine();
-            selectedAction = LibraryInterfaceActions.getActionByNumber(numbrAction);
-            handleAction(selectedAction, libraryInterface, input);
+            selectedActionLibraryInterface = LibraryInterfaceActions.getActionByNumber(selectedAction);
+            handleAction(selectedActionLibraryInterface);
         }
     }
 
-    protected static void handleAction(LibraryInterfaceActions action, LibraryInterface libraryInterface, Scanner input) {
+    private static void handleAction(LibraryInterfaceActions action) {
         switch (action) {
             case DISPLAY_LIBRARY_ITEMS -> libraryInterface.displayLibraryItems();
-            case BORROW_LIBRARY_ITEMS -> borrowItemByTitle(libraryInterface, input);
-            case RETURN_LIBRARY_ITEMS -> returnItemByTitle(libraryInterface, input);
+            case BORROW_LIBRARY_ITEMS -> borrowItemByTitle();
+            case RETURN_LIBRARY_ITEMS -> returnItemByTitle();
             case DISPLAY_COUNTS_ITEMS -> libraryInterface.displayCountBookAndMovie();
             case EXIT -> System.out.println("Do widzenia");
             default -> System.err.println("Nie istnieje taka akcja");
@@ -44,7 +44,7 @@ public class Main {
         System.out.println();
     }
 
-    protected static void borrowItemByTitle(LibraryInterface libraryInterface, Scanner input) {
+    private static void borrowItemByTitle() {
         System.out.print("Podaj tytuł do wypożyczenia: ");
         String title = input.nextLine();
         try {
@@ -55,7 +55,7 @@ public class Main {
         }
     }
 
-    protected static void returnItemByTitle(LibraryInterface libraryInterface, Scanner input) {
+    private static void returnItemByTitle() {
         System.out.print("Podaj tytuł do wypożyczenia: ");
         String title = input.nextLine();
         try {
