@@ -4,7 +4,7 @@ import org.example.exeptions.BorrowedItem;
 import org.example.exeptions.ItemNotBorrowed;
 import org.example.exeptions.ItemNotExist;
 import org.example.libraryItems.Book;
-import org.example.libraryItems.BorrowItemStatus;
+import org.example.enums.BorrowItemStatus;
 import org.example.libraryItems.LibraryItem;
 import org.example.libraryItems.Move;
 

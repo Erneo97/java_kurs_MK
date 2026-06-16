@@ -16,7 +16,7 @@ public class Move extends LibraryItem {
     public String toString() {
         return "Film{" +
                 "tytuł='" + title + '\'' +
-                ", autor='" + autor + '\'' +
+                ", autoryser='" + autor + '\'' +
                 ", długość (min.)=" + lenght +
                 '}';
     }

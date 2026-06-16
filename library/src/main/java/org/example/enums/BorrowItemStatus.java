@@ -1,4 +1,4 @@
-package org.example.libraryItems;
+package org.example.enums;
 
 public enum BorrowItemStatus {
     AVALIABLE,
