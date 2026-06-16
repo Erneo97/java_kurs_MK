@@ -19,7 +19,7 @@ public class LibraryInterface {
     }
 
     private void initLibrary() {
-        if( initialized) {
+        if (initialized) {
             return;
         }
         database.put(new Book("Wilk Stepowy", "Hasse", 258), BorrowItemStatus.AVALIABLE);
