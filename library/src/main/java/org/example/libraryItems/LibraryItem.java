@@ -14,12 +14,4 @@ public abstract class LibraryItem {
     public String getTitle() {
         return title;
     }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public int getLenght() {
-        return lenght;
-    }
 }
