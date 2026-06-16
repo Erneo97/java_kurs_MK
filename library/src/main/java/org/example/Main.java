@@ -8,13 +8,13 @@ import org.example.libraryItems.LibraryItem;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         LibraryInterface libraryInterface = new LibraryInterface();
         libraryInterface.initLibrary();
 
         int selectedAction = 1;
         Scanner input = new Scanner(System.in);
+        System.out.println("Witamy w bibliotece");
 
         while (selectedAction != 5) {
             System.out.print("""
