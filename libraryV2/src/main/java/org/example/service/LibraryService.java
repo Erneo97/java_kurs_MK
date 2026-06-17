@@ -8,10 +8,11 @@ import org.example.enums.BorrowItemStatus;
 import org.example.model.LibraryItem;
 import org.example.model.Move;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryService {
-    private static final HashMap<LibraryItem, BorrowItemStatus> database = new HashMap<>();
+    private static final List<LibraryItem> database = new ArrayList<>();
     private static boolean initialized = false;
 
     public LibraryService() {
@@ -22,11 +23,11 @@ public class LibraryService {
         if (initialized) {
             return;
         }
-        database.put(new Book("Wilk Stepowy", "Hasse", 258), BorrowItemStatus.AVALIABLE);
-        database.put(new Book("Pszczółka Maja", "Autor", 123), BorrowItemStatus.BORROWABLE);
-        database.put(new Book("Noname", "NoName", 222), BorrowItemStatus.AVALIABLE);
-        database.put(new Move("Wilk z Wall Street", "Martin Scorsese", 143), BorrowItemStatus.AVALIABLE);
-        database.put(new Move("Openheimer", "Johny Deep", 183), BorrowItemStatus.AVALIABLE);
+        database.add(new Book("Wilk Stepowy", "Hasse", 258));
+        database.add(new Book("Pszczółka Maja", "Autor", 123));
+        database.add(new Book("Noname", "NoName", 222));
+        database.add(new Move("Wilk z Wall Street", "Martin Scorsese", 143));
+        database.add(new Move("Openheimer", "Johny Deep", 183));
         initialized = true;
     }
 
@@ -39,8 +40,8 @@ public class LibraryService {
     }
 
     private void displayItemsByStatus(BorrowItemStatus status) {
-        for (LibraryItem item : database.keySet()) {
-            if (database.get(item) == status) {
+        for (LibraryItem item : database) {
+            if (item.getStatus() == status) {
                 System.out.println(item);
             }
         }
@@ -55,15 +56,15 @@ public class LibraryService {
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
         }
-        if (database.get(findItem).equals(BorrowItemStatus.AVALIABLE)) {
-            database.put(findItem, BorrowItemStatus.BORROWABLE);
+        if (findItem.getStatus() == BorrowItemStatus.AVALIABLE) {
+            findItem.setStatus(BorrowItemStatus.BORROWABLE);
             return findItem;
         }
         throw new BorrowedItemExeption(String.format("Tytuł: '%s' - jest wypożyczony", title));
     }
 
     public LibraryItem findItemByTitle(String title) {
-        for (LibraryItem item : database.keySet()) {
+        for (LibraryItem item : database) {
             if (item.getTitle().equals(title)) {
                 return item;
             }
@@ -76,8 +77,8 @@ public class LibraryService {
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
         }
-        if (database.get(findItem).equals(BorrowItemStatus.BORROWABLE)) {
-            database.put(findItem, BorrowItemStatus.AVALIABLE);
+        if (findItem.getStatus() == BorrowItemStatus.BORROWABLE) {
+            findItem.setStatus(BorrowItemStatus.AVALIABLE);
             return;
         }
         throw new ItemNotBorrowedExeption(String.format("Tytuł: '%s' - nie był wypożyczony", title));
