@@ -1,4 +1,4 @@
-package org.example.libraryItems;
+package org.example.model;
 
 public class Book extends LibraryItem {
     private static int bookCounter = 0;
@@ -17,7 +17,7 @@ public class Book extends LibraryItem {
         return "Książka{" +
                 "tytuł='" + title + '\'' +
                 ", autor='" + autor + '\'' +
-                ", l. stron=" + lenght +
+                ", l. stron=" + length +
                 '}';
     }
 }

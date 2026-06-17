@@ -1,6 +1,6 @@
 package org.example.enums;
 
-public enum LibraryInterfaceActions {
+public enum LibraryServiceActions {
     DISPLAY_LIBRARY_ITEMS(1),
     BORROW_LIBRARY_ITEMS(2),
     RETURN_LIBRARY_ITEMS(3),
@@ -10,12 +10,12 @@ public enum LibraryInterfaceActions {
 
     private final int action;
 
-    LibraryInterfaceActions(int action) {
+    LibraryServiceActions(int action) {
         this.action = action;
     }
 
-    public static LibraryInterfaceActions getActionByNumber(int action) {
-        for (LibraryInterfaceActions item : LibraryInterfaceActions.values()) {
+    public static LibraryServiceActions getActionByNumber(int action) {
+        for (LibraryServiceActions item : LibraryServiceActions.values()) {
             if (item.action == action) {
                 return item;
             }

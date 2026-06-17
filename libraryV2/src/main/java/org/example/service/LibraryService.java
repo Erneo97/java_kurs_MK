@@ -1,20 +1,20 @@
-package org.example;
+package org.example.service;
 
-import org.example.exeptions.BorrowedItem;
-import org.example.exeptions.ItemNotBorrowed;
+import org.example.exeptions.BorrowedItemExeption;
+import org.example.exeptions.ItemNotBorrowedExeption;
 import org.example.exeptions.ItemNotExist;
-import org.example.libraryItems.Book;
+import org.example.model.Book;
 import org.example.enums.BorrowItemStatus;
-import org.example.libraryItems.LibraryItem;
-import org.example.libraryItems.Move;
+import org.example.model.LibraryItem;
+import org.example.model.Move;
 
 import java.util.HashMap;
 
-public class LibraryInterface {
+public class LibraryService {
     private static final HashMap<LibraryItem, BorrowItemStatus> database = new HashMap<>();
     private static boolean initialized = false;
 
-    public LibraryInterface() {
+    public LibraryService() {
         initLibrary();
     }
 
@@ -50,7 +50,7 @@ public class LibraryInterface {
         System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Move.getMoveCounter());
     }
 
-    public LibraryItem borrowItemByTitle(String title) throws BorrowedItem {
+    public LibraryItem borrowItemByTitle(String title) throws BorrowedItemExeption {
         LibraryItem findItem = findItemByTitle(title);
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
@@ -59,7 +59,7 @@ public class LibraryInterface {
             database.put(findItem, BorrowItemStatus.BORROWABLE);
             return findItem;
         }
-        throw new BorrowedItem(String.format("Tytuł: '%s' - jest wypożyczony", title));
+        throw new BorrowedItemExeption(String.format("Tytuł: '%s' - jest wypożyczony", title));
     }
 
     public LibraryItem findItemByTitle(String title) {
@@ -71,7 +71,7 @@ public class LibraryInterface {
         return null;
     }
 
-    public void returnItemByTitle(String title) throws ItemNotBorrowed {
+    public void returnItemByTitle(String title) throws ItemNotBorrowedExeption {
         LibraryItem findItem = findItemByTitle(title);
         if (findItem == null) {
             throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
@@ -80,6 +80,6 @@ public class LibraryInterface {
             database.put(findItem, BorrowItemStatus.AVALIABLE);
             return;
         }
-        throw new ItemNotBorrowed(String.format("Tytuł: '%s' - nie był wypożyczony", title));
+        throw new ItemNotBorrowedExeption(String.format("Tytuł: '%s' - nie był wypożyczony", title));
     }
 }
