@@ -1,9 +1,9 @@
 package org.example.model;
 
-public class Move extends LibraryItem {
+public class Movie extends LibraryItem {
     private static int moveCounter = 0;
 
-    public Move(String title, String director, int lengthMinutes) {
+    public Movie(String title, String director, int lengthMinutes) {
         super(title, director, lengthMinutes);
         moveCounter++;
     }

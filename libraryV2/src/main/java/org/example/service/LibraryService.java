@@ -7,7 +7,7 @@ import org.example.exeptions.ItemNotExist;
 import org.example.model.Book;
 import org.example.enums.BorrowItemStatus;
 import org.example.model.LibraryItem;
-import org.example.model.Move;
+import org.example.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,8 @@ public class LibraryService {
         database.add(new Book("Wilk Stepowy", "Hasse", 258));
         database.add(new Book("Pszczółka Maja", "Autor", 123));
         database.add(new Book("Noname", "NoName", 222));
-        database.add(new Move("Wilk z Wall Street", "Martin Scorsese", 143));
-        database.add(new Move("Openheimer", "Johny Deep", 183));
+        database.add(new Movie("Wilk z Wall Street", "Martin Scorsese", 143));
+        database.add(new Movie("Openheimer", "Johny Deep", 183));
         initialized = true;
     }
 
@@ -50,7 +50,7 @@ public class LibraryService {
     }
 
     public void displayCountBookAndMovie() {
-        System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Move.getMoveCounter());
+        System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Movie.getMoveCounter());
     }
 
     public Optional<LibraryItem> borrowItemByTitle(String title) throws BorrowedItemExeption {
