@@ -18,20 +18,19 @@ public class Main {
         };
 
         System.out.println("\tTest interfejs funkcyjny");
-        System.out.printf("Dodawanie: %d\n", calculate(number1, number2, add));
-        System.out.printf("Odejmowanie: %d\n", calculate(number1, number2, sub));
-        System.out.printf("Mnożenie: %d\n", calculate(number1, number2, multiply));
-        System.out.printf("Dzielenie: %d\n", calculate(number1, number2, divide));
+        System.out.printf("Dodawanie: %d\n", calculateUsingOperator(number1, number2, add));
+        System.out.printf("Odejmowanie: %d\n", calculateUsingOperator(number1, number2, sub));
+        System.out.printf("Mnożenie: %d\n", calculateUsingOperator(number1, number2, multiply));
+        System.out.printf("Dzielenie: %d\n", calculateUsingOperator(number1, number2, divide));
 
         System.out.println("\tTest enum");
-        System.out.printf("Dodawanie: %d\n", AvaliableMathOperations.getMathOperation("+").calculate(number1, number2));
-        System.out.printf("Odejmowanie: %d\n", AvaliableMathOperations.getMathOperation("-").calculate(number1, number2));
-        System.out.printf("Mnożenie: %d\n", AvaliableMathOperations.getMathOperation("*").calculate(number1, number2));
-        System.out.printf("Dzielenie: %d\n", AvaliableMathOperations.getMathOperation("/").calculate(number1, number2));
-
+        System.out.printf("Dodawanie: %d\n", calculateUsingOperator(number1, number2, AvaliableMathOperations.fromOperator("+")));
+        System.out.printf("Odejmowanie: %d\n", calculateUsingOperator(number1, number2, AvaliableMathOperations.fromOperator("-")));
+        System.out.printf("Mnożenie: %d\n", calculateUsingOperator(number1, number2, AvaliableMathOperations.fromOperator("*")));
+        System.out.printf("Dzielenie: %d\n", calculateUsingOperator(number1, number2, AvaliableMathOperations.fromOperator("/")));
     }
 
-    public static int calculate(int a, int b, MathOperation operation) {
+    public static int calculateUsingOperator(int a, int b, MathOperation operation) {
         return operation.calculate(a, b);
     }
 

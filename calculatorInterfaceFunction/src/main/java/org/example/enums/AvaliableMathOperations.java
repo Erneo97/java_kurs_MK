@@ -6,12 +6,7 @@ public enum AvaliableMathOperations implements MathOperation {
     ADD("+", Integer::sum),
     SUBTRACT("-", (a, b) -> a - b),
     MULTIPLY("*", (a, b) -> a * b),
-    DIVIDE("/", (a, b) -> {
-        if (b == 0) {
-            throw new ArithmeticException("Dzielenie przez zero");
-        }
-        return a / b;
-    }),
+    DIVIDE("/", AvaliableMathOperations::div),
     NON_EXIST("", Integer::sum);
 
     private final String operator;
@@ -22,7 +17,7 @@ public enum AvaliableMathOperations implements MathOperation {
         this.mathOperation = mathOperation;
     }
 
-    public static AvaliableMathOperations getMathOperation(String operator) {
+    public static AvaliableMathOperations fromOperator(String operator) {
         for (AvaliableMathOperations operation : AvaliableMathOperations.values()) {
             if (operation.operator.equals(operator)) {
                 return operation;
@@ -35,4 +30,12 @@ public enum AvaliableMathOperations implements MathOperation {
     public int calculate(int a, int b) {
         return mathOperation.calculate(a, b);
     }
+
+    private static int div(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Dzielenie przez zero");
+        }
+        return a / b;
+    }
+
 }
