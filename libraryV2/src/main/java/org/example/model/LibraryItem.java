@@ -24,7 +24,7 @@ public abstract class LibraryItem {
         this.status = BorrowItemStatus.BORROWABLE;
     }
 
-    public void returnBorowedItem() throws ItemNotBorrowedExeption {
+    public void returnBorrowedItem() throws ItemNotBorrowedExeption {
         if (status == BorrowItemStatus.AVALIABLE) {
             throw new ItemNotBorrowedExeption(String.format(StringsDefaultFormatExeptions.BORROW_NOT_BOROWWED.getFormat(), title));
         }
