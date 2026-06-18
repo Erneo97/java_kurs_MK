@@ -1,9 +1,9 @@
 package org.example.model;
 
 import org.example.enums.BorrowItemStatus;
+import org.example.enums.StringsDefaultFormatExeptions;
 import org.example.exeptions.BorrowedItemExeption;
 import org.example.exeptions.ItemNotBorrowedExeption;
-import org.example.interfaces.Borowlable;
 
 import java.util.Objects;
 
@@ -19,14 +19,14 @@ public abstract class LibraryItem {
 
     public void borrow() throws BorrowedItemExeption {
         if (status == BorrowItemStatus.BORROWABLE) {
-            throw new BorrowedItemExeption(String.format("Tytuł: '%s' - jest wypożyczony", title));
+            throw new BorrowedItemExeption(String.format(StringsDefaultFormatExeptions.BORROWED_ITEM.getFormat(), title));
         }
         this.status = BorrowItemStatus.BORROWABLE;
     }
 
     public void returnBorowedItem() throws ItemNotBorrowedExeption {
         if (status == BorrowItemStatus.AVALIABLE) {
-            throw new ItemNotBorrowedExeption(String.format("Tytuł: '%s' - nie był wypożyczony", title));
+            throw new ItemNotBorrowedExeption(String.format(StringsDefaultFormatExeptions.BORROW_NOT_BOROWWED.getFormat(), title));
         }
         this.status = BorrowItemStatus.AVALIABLE;
     }
