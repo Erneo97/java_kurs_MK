@@ -7,6 +7,7 @@ import org.example.exeptions.ItemNotExist;
 import org.example.model.LibraryItem;
 import org.example.service.LibraryService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -49,8 +50,10 @@ public class Main {
         System.out.print("Podaj tytuł do wypożyczenia: ");
         String title = input.nextLine();
         try {
-            LibraryItem item = LibraryService.borrowItemByTitle(title);
-            System.out.println("Wypożyczono: " + item.getClass().getSimpleName());
+            Optional<LibraryItem> optItem = LibraryService.borrowItemByTitle(title);
+            optItem.ifPresent((item) -> {
+                System.out.println("Wypożyczono: " + item.getClass().getSimpleName());
+            });
         } catch (ItemNotExist | BorrowedItemExeption e) {
             System.err.println(e.getMessage());
         }
