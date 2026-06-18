@@ -1,25 +1,17 @@
-package org.example.libraryItems;
+package org.example.model;
 
 public abstract class LibraryItem {
-    private String title;
-    private String autor;
-    private int lenght;
+    protected final String title;
+    protected final String autor;
+    protected final int length;
 
-    public  LibraryItem(String title, String autor, int lenght) {
+    public LibraryItem(String title, String autor, int length) {
         this.title = title;
         this.autor = autor;
-        this.lenght = lenght;
+        this.length = length;
     }
 
     public String getTitle() {
         return title;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public int getLenght() {
-        return lenght;
     }
 }
