@@ -19,7 +19,16 @@ public class Main {
 
         System.out.println("Witamy w bibliotece");
         while (selectedActionLibraryService != LibraryServiceActions.EXIT) {
-            System.out.print("""
+            printMenu();
+            int selectedAction = input.nextInt();
+            input.nextLine();
+            selectedActionLibraryService = LibraryServiceActions.getActionByNumber(selectedAction);
+            handleAction(selectedActionLibraryService);
+        }
+    }
+
+    private static void printMenu() {
+        System.out.print("""
                     Dostępne akcje:
                     1- Wyświetlanie listy dostępnych i wypożyczonych elementów.
                     2 - Wypożyczanie elementu po tytule.
@@ -27,11 +36,6 @@ public class Main {
                     4 - Wyświetlanie liczby książek i filmów w systemie.
                     5 - Wyjście z programu.
                     Twój wybór:""");
-            int selectedAction = input.nextInt();
-            input.nextLine();
-            selectedActionLibraryService = LibraryServiceActions.getActionByNumber(selectedAction);
-            handleAction(selectedActionLibraryService);
-        }
     }
 
     private static void handleAction(LibraryServiceActions action) {
