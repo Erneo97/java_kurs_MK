@@ -55,7 +55,8 @@ public class LibraryService {
 
     public LibraryItem borrowItemByTitle(String title) throws BorrowedItemExeption {
         Optional<LibraryItem> findItem = findItemByTitle(title);
-        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(
+                String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
         item.borrow();
         return item;
     }
@@ -71,7 +72,8 @@ public class LibraryService {
 
     public void returnItemByTitle(String title) throws ItemNotBorrowedExeption {
         Optional<LibraryItem> findItem = findItemByTitle(title);
-        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist
+                (String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
         item.returnBorrowedItem();
     }
 }
