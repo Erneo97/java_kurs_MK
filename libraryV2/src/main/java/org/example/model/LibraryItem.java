@@ -1,6 +1,9 @@
 package org.example.model;
 
 import org.example.enums.BorrowItemStatus;
+import org.example.enums.StringsDefaultFormatExeptions;
+import org.example.exeptions.BorrowedItemExeption;
+import org.example.exeptions.ItemNotBorrowedExeption;
 
 import java.util.Objects;
 
@@ -14,9 +17,20 @@ public abstract class LibraryItem {
         return status;
     }
 
-    public void setStatus(BorrowItemStatus status) {
-        this.status = status;
+    public void borrow() throws BorrowedItemExeption {
+        if (status == BorrowItemStatus.BORROWABLE) {
+            throw new BorrowedItemExeption(String.format(StringsDefaultFormatExeptions.BORROWED_ITEM.getFormat(), title));
+        }
+        this.status = BorrowItemStatus.BORROWABLE;
     }
+
+    public void returnBorrowedItem() throws ItemNotBorrowedExeption {
+        if (status == BorrowItemStatus.AVALIABLE) {
+            throw new ItemNotBorrowedExeption(String.format(StringsDefaultFormatExeptions.BORROW_NOT_BOROWWED.getFormat(), title));
+        }
+        this.status = BorrowItemStatus.AVALIABLE;
+    }
+
     public LibraryItem(String title, String autor, int length) {
         this.title = title;
         this.autor = autor;

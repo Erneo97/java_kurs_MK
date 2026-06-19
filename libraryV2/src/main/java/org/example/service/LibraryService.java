@@ -1,15 +1,17 @@
 package org.example.service;
 
+import org.example.enums.StringsDefaultFormatExeptions;
 import org.example.exeptions.BorrowedItemExeption;
 import org.example.exeptions.ItemNotBorrowedExeption;
 import org.example.exeptions.ItemNotExist;
 import org.example.model.Book;
 import org.example.enums.BorrowItemStatus;
 import org.example.model.LibraryItem;
-import org.example.model.Move;
+import org.example.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class LibraryService {
     private static final List<LibraryItem> database = new ArrayList<>();
@@ -26,8 +28,8 @@ public class LibraryService {
         database.add(new Book("Wilk Stepowy", "Hasse", 258));
         database.add(new Book("Pszczółka Maja", "Autor", 123));
         database.add(new Book("Noname", "NoName", 222));
-        database.add(new Move("Wilk z Wall Street", "Martin Scorsese", 143));
-        database.add(new Move("Openheimer", "Johny Deep", 183));
+        database.add(new Movie("Wilk z Wall Street", "Martin Scorsese", 143));
+        database.add(new Movie("Openheimer", "Johny Deep", 183));
         initialized = true;
     }
 
@@ -48,39 +50,30 @@ public class LibraryService {
     }
 
     public void displayCountBookAndMovie() {
-        System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Move.getMoveCounter());
+        System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Movie.getMoveCounter());
     }
 
     public LibraryItem borrowItemByTitle(String title) throws BorrowedItemExeption {
-        LibraryItem findItem = findItemByTitle(title);
-        if (findItem == null) {
-            throw new ItemNotExist(String.format("Tytuł: '%s' nie jest dostępny", title));
-        }
-        if (findItem.getStatus() == BorrowItemStatus.AVALIABLE) {
-            findItem.setStatus(BorrowItemStatus.BORROWABLE);
-            return findItem;
-        }
-        throw new BorrowedItemExeption(String.format("Tytuł: '%s' - jest wypożyczony", title));
+        Optional<LibraryItem> findItem = findItemByTitle(title);
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(
+                String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        item.borrow();
+        return item;
     }
 
-    public LibraryItem findItemByTitle(String title) {
+    public Optional<LibraryItem> findItemByTitle(String title) {
         for (LibraryItem item : database) {
             if (item.getTitle().equals(title)) {
-                return item;
+                return Optional.of(item);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     public void returnItemByTitle(String title) throws ItemNotBorrowedExeption {
-        LibraryItem findItem = findItemByTitle(title);
-        if (findItem == null) {
-            throw new ItemNotExist(String.format("Tytuł: '%s' nie jest częścią biblioteki", title));
-        }
-        if (findItem.getStatus() == BorrowItemStatus.BORROWABLE) {
-            findItem.setStatus(BorrowItemStatus.AVALIABLE);
-            return;
-        }
-        throw new ItemNotBorrowedExeption(String.format("Tytuł: '%s' - nie był wypożyczony", title));
+        Optional<LibraryItem> findItem = findItemByTitle(title);
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(
+                String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        item.returnBorrowedItem();
     }
 }
