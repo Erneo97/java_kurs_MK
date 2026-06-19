@@ -53,11 +53,11 @@ public class LibraryService {
         System.out.printf("Liczba książek: %d\nLiczba filmów: %d\n", Book.getBookCounter(), Movie.getMoveCounter());
     }
 
-    public Optional<LibraryItem> borrowItemByTitle(String title) throws BorrowedItemExeption {
+    public LibraryItem borrowItemByTitle(String title) throws BorrowedItemExeption {
         Optional<LibraryItem> findItem = findItemByTitle(title);
-        findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
-        findItem.get().borrow();
-        return findItem;
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        item.borrow();
+        return item;
     }
 
     public Optional<LibraryItem> findItemByTitle(String title) {
@@ -71,7 +71,7 @@ public class LibraryService {
 
     public void returnItemByTitle(String title) throws ItemNotBorrowedExeption {
         Optional<LibraryItem> findItem = findItemByTitle(title);
-        findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
-        findItem.get().returnBorrowedItem();
+        LibraryItem item = findItem.orElseThrow(() -> new ItemNotExist(String.format(StringsDefaultFormatExeptions.ITEM_NOT_EXIST.getFormat(), title)));
+        item.returnBorrowedItem();
     }
 }

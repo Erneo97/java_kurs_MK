@@ -50,10 +50,8 @@ public class Main {
         System.out.print("Podaj tytuł do wypożyczenia: ");
         String title = input.nextLine();
         try {
-            Optional<LibraryItem> optItem = LibraryService.borrowItemByTitle(title);
-            optItem.ifPresent((item) -> {
-                System.out.println("Wypożyczono: " + item.getClass().getSimpleName());
-            });
+            LibraryItem item = LibraryService.borrowItemByTitle(title);
+            System.out.println("Wypożyczono: " + item.getClass().getSimpleName());
         } catch (ItemNotExist | BorrowedItemExeption e) {
             System.err.println(e.getMessage());
         }
