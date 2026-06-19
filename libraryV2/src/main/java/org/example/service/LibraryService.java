@@ -42,11 +42,9 @@ public class LibraryService {
     }
 
     private void displayItemsByStatus(BorrowItemStatus status) {
-        for (LibraryItem item : database) {
-            if (item.getStatus() == status) {
-                System.out.println(item);
-            }
-        }
+        database.stream()
+                .filter(item -> item.getStatus() == status)
+                .forEach(System.out::println);
     }
 
     public void displayCountBookAndMovie() {
@@ -62,12 +60,9 @@ public class LibraryService {
     }
 
     public Optional<LibraryItem> findItemByTitle(String title) {
-        for (LibraryItem item : database) {
-            if (item.getTitle().equals(title)) {
-                return Optional.of(item);
-            }
-        }
-        return Optional.empty();
+        return database.stream()
+                .filter(item -> item.getTitle().equals(title))
+                .findAny();
     }
 
     public void returnItemByTitle(String title) throws ItemNotBorrowedExeption {
