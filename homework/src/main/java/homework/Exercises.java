@@ -268,5 +268,4 @@ public class Exercises {
         return getUserStream()
                 .flatMap(user -> user.getAccounts().stream());
     }
-
 }
