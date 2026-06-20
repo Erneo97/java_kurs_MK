@@ -32,6 +32,8 @@ public class Exercises {
 
         System.out.println("executeForEachCompany println nazwa ");
         executeForEachCompany(company -> System.out.println("\t " + company.getName()));
+        
+        showAllUser();
     }
 
     /**
@@ -174,6 +176,9 @@ public class Exercises {
      * Zosia Psikuta, Zenon Kucowski, Zenek Jawowy ... Alfred Pasibrzuch, Adam Wojcik
      */
     public static void showAllUser() {
+        getUserStream()
+                .sorted(Comparator.comparing(User::getFirstName, Comparator.reverseOrder()))
+                .forEach(user ->  System.out.printf("%s %s, ", user.getFirstName(), user.getLastName()));
     }
 
     /**
