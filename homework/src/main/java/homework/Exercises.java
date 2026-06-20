@@ -24,6 +24,7 @@ public class Exercises {
         System.out.println("Nazwa holdingów: " + getHoldingNamesAsString());
         System.out.println("Liczba firm w holdingach: " + getCompaniesAmount());
         System.out.println("Liczba pracowników w firmach: " + getAllUserAmount());
+        System.out.println("Lista firm LinkedList " + getAllCompaniesNamesAsLinkedList());
     }
 
     /**
@@ -81,7 +82,9 @@ public class Exercises {
      * po zakończeniu działania strumienia.
      */
     public static LinkedList<String> getAllCompaniesNamesAsLinkedList() {
-        return null;
+        return holdings.stream()
+                .map(Holding::getName)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LinkedList::new));
     }
 
     /**
