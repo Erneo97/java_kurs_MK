@@ -78,8 +78,7 @@ public class Exercises {
      * Zwraca liczbę wszystkich pracowników we wszystkich firmach.
      */
     public static long getAllUserAmount() {
-        return holdings.stream()
-                .flatMap(holding -> holding.getCompanies().stream())
+        return getCompanyStream()
                 .mapToLong(companies -> companies.getUsers().size())
                 .sum();
     }
@@ -108,10 +107,7 @@ public class Exercises {
      * Zwraca imiona użytkowników w formie zbioru, którzy spełniają podany warunek.
      */
     public static Set<String> getUsersForPredicate(final Predicate<User> userPredicate) {
-        return holdings.stream()
-                .flatMap(holding -> holding.getCompanies()
-                        .stream()
-                        .flatMap(company -> company.getUsers().stream()))
+        return getUserStream()
                 .filter(userPredicate)
                 .map(User::getFirstName)
                 .collect(Collectors.toSet());
@@ -121,8 +117,7 @@ public class Exercises {
      * Dla każdej firmy uruchamia przekazaną metodę.
      */
     public static void executeForEachCompany(Consumer<Company> consumer) {
-        holdings.stream()
-                .flatMap(holding -> holding.getCompanies().stream())
+        getCompanyStream()
                 .forEach(consumer);
     }
 
