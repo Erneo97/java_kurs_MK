@@ -16,6 +16,22 @@ public class Main {
         testSFunctionString();
 
         testExe8Employee();
+
+        testExercise9String();
+    }
+
+    private static void testExercise9String() {
+        List<String> sentences = Arrays.asList("hello java world", "java streams", "world of code hello");
+
+        System.out.println(exercise9(sentences));
+    }
+
+    private static String exercise9(List<String> sentences) {
+        return sentences.stream()
+                .flatMap(s -> Arrays.stream(s.split(" ")))
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining(", "));
     }
 
     private static void testExe8Employee() {
