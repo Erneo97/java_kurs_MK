@@ -10,6 +10,7 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -18,20 +19,29 @@ public class Exercises {
     private static final List<Holding> holdings = new HoldingGenerator().generate();
 
     public static void main(String[] args) {
+        System.out.println("liczbę holdingów company > 1: " + getHoldingsWhereAreCompanies());
+        System.out.println("Lista nazw holdingów: " + getHoldingNames());
+        System.out.println("Nazwa holdingów: " + getHoldingNamesAsString());
+        System.out.println("Liczba firm w holdingach: " + getCompaniesAmount());
+        System.out.println("Liczba pracowników w firmach: " + getAllUserAmount());
     }
 
     /**
      * Napisz metodę, która zwróci liczbę holdingów, w których jest przynajmniej jedna firma.
      */
     public static long getHoldingsWhereAreCompanies() {
-        return 0;
+        return holdings.stream()
+                .filter(holding -> holding.getCompanies().size() > 1)
+                .count();
     }
 
     /**
      * Napisz metodę, która zwróci nazwy wszystkich holdingów pisane z wielkiej litery w formie listy.
      */
     public static List<String> getHoldingNames() {
-        return null;
+        return holdings.stream()
+                .map(holding -> holding.getName().toUpperCase())
+                .toList();
     }
 
     /**
@@ -39,14 +49,20 @@ public class Exercises {
      * String ma postać: (Coca-Cola, Nestle, Pepsico)
      */
     public static String getHoldingNamesAsString() {
-        return null;
+        String holdingStr = holdings.stream()
+                .map(Holding::getName)
+                .sorted()
+                .collect(Collectors.joining(", "));
+        return String.format("(%s)", holdingStr);
     }
 
     /**
      * Zwraca liczbę firm we wszystkich holdingach.
      */
     public static long getCompaniesAmount() {
-        return 0;
+        return holdings.stream()
+                .mapToLong(holding -> holding.getCompanies().size())
+                .sum();
     }
 
 
@@ -54,7 +70,10 @@ public class Exercises {
      * Zwraca liczbę wszystkich pracowników we wszystkich firmach.
      */
     public static long getAllUserAmount() {
-        return 0;
+        return holdings.stream()
+                .flatMap(holding -> holding.getCompanies().stream())
+                .mapToLong(companies -> companies.getUsers().size())
+                .sum();
     }
 
     /**
