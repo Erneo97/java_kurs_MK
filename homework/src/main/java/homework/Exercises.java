@@ -25,6 +25,10 @@ public class Exercises {
         System.out.println("Liczba firm w holdingach: " + getCompaniesAmount());
         System.out.println("Liczba pracowników w firmach: " + getAllUserAmount());
         System.out.println("Lista firm LinkedList " + getAllCompaniesNamesAsLinkedList());
+
+        System.out.println("\nLista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.MAN ));
+        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getFirstName().charAt(0) == 'M' ));
+        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.WOMAN ));
     }
 
     /**
@@ -101,7 +105,13 @@ public class Exercises {
      * Zwraca imiona użytkowników w formie zbioru, którzy spełniają podany warunek.
      */
     public static Set<String> getUsersForPredicate(final Predicate<User> userPredicate) {
-        return null;
+        return holdings.stream()
+                .flatMap(holding -> holding.getCompanies()
+                        .stream()
+                        .flatMap(company -> company.getUsers().stream()))
+                .filter(userPredicate)
+                .map(User::getFirstName)
+                .collect(Collectors.toSet());
     }
 
     /**
