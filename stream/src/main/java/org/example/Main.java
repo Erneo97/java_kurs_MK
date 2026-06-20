@@ -1,19 +1,83 @@
 package org.example;
 
+import org.example.model.Employee;
 import org.example.model.Point;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main {
+
     public static void main(String[] args) {
         testPoint();
         testIntegerArray();
         testSFunctionString();
+
+        testExe8Employee();
     }
+
+    private static void testExe8Employee() {
+        System.out.println("\n\tZadanie 8 - Klasa employee");
+        List<Employee> employees = createEmployees();
+
+        List<Employee> filtratedEmployeesByAge = getFilatratedListByPredicate(employees, employee -> employee.getAge() > 25);
+        System.out.println("Pracownicy powyżej 25: " + filtratedEmployeesByAge);
+
+        System.out.println("Posortowane imiona pracowników: " + getSortedAscNamesEmployees(filtratedEmployeesByAge));
+        System.out.println("Posortowane imiona pracowników: " + getSortedDscNamesEmployees(filtratedEmployeesByAge));
+
+        showGroupedEmployeesByDepartament(groupEmployeeByDepartment(employees));
+    }
+
+    private static Map<String, List<Employee>> groupEmployeeByDepartment(List<Employee> employees) {
+        return employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+    }
+
+    private static void showGroupedEmployeesByDepartament(Map<String, List<Employee>> groupedEmployees) {
+        System.out.println("Pogrupowani pracownicy do departamentu:");
+        for (String departament : groupedEmployees.keySet() ) {
+            System.out.printf("%12s: %s\n",departament, groupedEmployees.get(departament));
+        }
+    }
+
+    private static List<String> getSortedAscNamesEmployees(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::getName)
+                .sorted()
+                .toList();
+    }
+
+    private static List<String> getSortedDscNamesEmployees(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::getName)
+                .sorted(Comparator.reverseOrder())
+                .toList();
+    }
+
+    private static List<Employee> getFilatratedListByPredicate(List<Employee> employees, Predicate<Employee> predicate) {
+        return employees.stream()
+                .filter(predicate)
+                .toList();
+    }
+
+    private static List<Employee> createEmployees() {
+        return List.of(
+                new Employee("Anna", 25, "IT"),
+                new Employee("Jan", 30, "HR"),
+                new Employee("Kasia", 28, "Finance"),
+                new Employee("Marek", 35, "IT"),
+                new Employee("Ola", 22, "Marketing"),
+                new Employee("Piotr", 40, "Sales"),
+                new Employee("Ewa", 27, "HR"),
+                new Employee("Tomek", 32, "Finance"),
+                new Employee("Natalia", 22, "IT"),
+                new Employee("Adam", 45, "Management")
+        );
+    }
+
 
     private static void testSFunctionString() {
         Function<String, String> trimWhiteCase = String::trim;
