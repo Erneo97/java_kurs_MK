@@ -33,6 +33,11 @@ public class Exercises {
         System.out.println("executeForEachCompany println nazwa ");
         executeForEachCompany(company -> System.out.println("\t " + company.getName()));
 
+        Map<String, Account> mapAcounts = createAccountsMap();
+        System.out.printf("%10s %12s\n", "nr. rachunku", "Rachunek");
+        for (String acount : mapAcounts.keySet()) {
+            System.out.printf("\t%10s %12s\n", acount, mapAcounts.get(acount).getAmount().toString());
+        }
         System.out.println("getUserNames: " + getUserNames());
         showAllUser();
     }
@@ -162,7 +167,11 @@ public class Exercises {
      * Zwraca mapę rachunków, gdzie kluczem jest numer rachunku, a wartością ten rachunek.
      */
     public static Map<String, Account> createAccountsMap() {
-        return null;
+        return getAccoutStream()
+                .collect(Collectors.toMap(
+                        Account::getNumber,
+                        account -> account
+                ));
     }
 
     /**
