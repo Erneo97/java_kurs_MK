@@ -34,15 +34,36 @@ public class Exercises {
         executeForEachCompany(company -> System.out.println("\t " + company.getName()));
 
         Map<String, Account> mapAcounts = createAccountsMap();
-        System.out.printf("%10s %12s\n", "nr. rachunku", "Rachunek");
-        for (String acount : mapAcounts.keySet()) {
-            System.out.printf("\t%10s %12s\n", acount, mapAcounts.get(acount).getAmount().toString());
-        }
+        showAomunts(mapAcounts);
+
         System.out.println("getUserNames: " + getUserNames());
         showAllUser();
 
         int limitCompany = 7;
         System.out.printf("\nLimit %d ile zwrócono firm: %d", limitCompany, getFirstNCompany(limitCompany).size());
+
+        System.out.println("getUserPerCompany");
+        Map<String, List<User>> companys = getUserPerCompany();
+        showListCompanyUsers(companys);
+
+        System.out.println("Waluty w jakich są rachunki:");
+        getCurenciesSet().forEach(currency ->  System.out.println("\t" + currency));
+
+    }
+
+    private static void showAomunts(Map<String, Account> mapAcounts) {
+        System.out.printf("%10s %12s\n", "nr. rachunku", "Rachunek");
+        for (String acount : mapAcounts.keySet()) {
+            System.out.printf("\t%10s %12s\n", acount, mapAcounts.get(acount).getAmount().toString());
+        }
+    }
+
+    private static void showListCompanyUsers(Map<String, List<User>> companys) {
+        for (Map.Entry<String, List<User>> entry : companys.entrySet()) {
+            System.out.printf("%10s:  ", entry.getKey());
+            entry.getValue().forEach(user -> System.out.printf("\t %5s %10s, ", user.getFirstName(), user.getLastName()));
+            System.out.println();
+        }
     }
 
     /**
@@ -159,7 +180,9 @@ public class Exercises {
      * Zwraca mapę firm, gdzie kluczem jest jej nazwa a wartością lista pracowników.
      */
     public static Map<String, List<User>> getUserPerCompany() {
-        return null;
+        return getCompanyStream()
+                .collect(Collectors
+                        .toMap(Company::getName, Company::getUsers));
     }
 
     /**
@@ -198,14 +221,16 @@ public class Exercises {
     public static void showAllUser() {
         getUserStream()
                 .sorted(Comparator.comparing(User::getFirstName, Comparator.reverseOrder()))
-                .forEach(user ->  System.out.printf("%s %s, ", user.getFirstName(), user.getLastName()));
+                .forEach(user -> System.out.printf("%s %s, ", user.getFirstName(), user.getLastName()));
     }
 
     /**
      * Zwraca zbiór walut w jakich są rachunki.
      */
     public static Set<Currency> getCurenciesSet() {
-        return null;
+        return getAccoutStream()
+                .map(Account::getCurrency)
+                .collect(Collectors.toSet());
     }
 
     /**
