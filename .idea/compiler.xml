@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="calculator" />
         <module name="homework" />
+        <module name="stream" />
         <module name="libraryV2" />
         <module name="myListLIFO" />
         <module name="calculatorInterfaceFunction" />
