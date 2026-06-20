@@ -22,11 +22,15 @@ public class Main {
         System.out.println("\n\tZadanie 8 - Klasa employee");
         List<Employee> employees = createEmployees();
 
-        List<Employee> filtratedEmployeesByAge = getFilatratedListByPredicate(employees, employee -> employee.getAge() > 25);
+        Predicate<Employee> filtrAge = e -> e.getAge() > 25;
+
+        List<Employee> filtratedEmployeesByAge = getFilatratedListByPredicate(employees, filtrAge);
         System.out.println("Pracownicy powyżej 25: " + filtratedEmployeesByAge);
 
         System.out.println("Posortowane imiona pracowników: " + getSortedAscNamesEmployees(filtratedEmployeesByAge));
         System.out.println("Posortowane imiona pracowników: " + getSortedDscNamesEmployees(filtratedEmployeesByAge));
+
+        System.out.println("Posortowane imiona pracowników: " + getNamesAndFiltrEmployee(employees, filtrAge));
 
         showGroupedEmployeesByDepartament(groupEmployeeByDepartment(employees));
     }
@@ -41,6 +45,14 @@ public class Main {
         for (String departament : groupedEmployees.keySet() ) {
             System.out.printf("%12s: %s\n",departament, groupedEmployees.get(departament));
         }
+    }
+
+    private static List<String> getNamesAndFiltrEmployee(List<Employee> employees, Predicate<Employee> filter) {
+        return employees.stream()
+                .filter(filter)
+                .map(Employee::getName)
+                .sorted()
+                .toList();
     }
 
     private static List<String> getSortedAscNamesEmployees(List<Employee> employees) {
