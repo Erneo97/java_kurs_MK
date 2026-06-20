@@ -40,6 +40,9 @@ public class Exercises {
         }
         System.out.println("getUserNames: " + getUserNames());
         showAllUser();
+
+        int limitCompany = 7;
+        System.out.printf("\nLimit %d ile zwrócono firm: %d", limitCompany, getFirstNCompany(limitCompany).size());
     }
 
     /**
@@ -145,7 +148,11 @@ public class Exercises {
      * Zwraca nazwy pierwszych N firm. Kolejność nie ma znaczenia.
      */
     private static Set<String> getFirstNCompany(final int n) {
-        return null;
+
+        return getCompanyStream()
+                .map(Company::getName)
+                .limit(n)
+                .collect(Collectors.toSet());
     }
 
     /**
