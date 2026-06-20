@@ -51,6 +51,10 @@ public class Exercises {
 
 
        System.out.println("Pracownik na literę M: " + getUser(user -> user.getFirstName().charAt(0) == 'M' && user.getSex() == Sex.MAN).getFirstName());
+
+       Optional<User> optionalUser = getRichestWoman();
+       optionalUser.ifPresent(user -> System.out.printf("Najbogatsza kobieta: %s %s", user.getFirstName(), user.getLastName()));
+
     }
 
     private static void showAomunts(Map<String, Account> mapAcounts) {
@@ -155,16 +159,21 @@ public class Exercises {
                 .forEach(consumer);
     }
 
-    /** TODO
+    /**
      * Wyszukuje najbogatsza kobietę i zwraca ją. Metoda musi uzwględniać to że rachunki są w różnych walutach.
      */
     //pomoc w rozwiązaniu problemu w zadaniu: https://stackoverflow.com/a/55052733/9360524
     public static Optional<User> getRichestWoman() {
-        return Optional.empty();
+        return getUserStream()
+                .filter(user -> user.getSex() == Sex.WOMAN)
+                .max(Comparator.comparing(Exercises::getUserAmountInPLN));
     }
 
     private static BigDecimal getUserAmountInPLN(final User user) {
-        return null;
+        return user.getAccounts()
+                .stream()
+                .map(Account::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     /**
