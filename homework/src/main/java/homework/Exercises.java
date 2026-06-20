@@ -26,9 +26,12 @@ public class Exercises {
         System.out.println("Liczba pracowników w firmach: " + getAllUserAmount());
         System.out.println("Lista firm LinkedList " + getAllCompaniesNamesAsLinkedList());
 
-        System.out.println("\nLista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.MAN ));
-        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getFirstName().charAt(0) == 'M' ));
-        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.WOMAN ));
+        System.out.println("\nLista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.MAN));
+        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getFirstName().charAt(0) == 'M'));
+        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.WOMAN));
+
+        System.out.println("executeForEachCompany println nazwa ");
+        executeForEachCompany(company -> System.out.println("\t " + company.getName()));
     }
 
     /**
@@ -118,6 +121,9 @@ public class Exercises {
      * Dla każdej firmy uruchamia przekazaną metodę.
      */
     public static void executeForEachCompany(Consumer<Company> consumer) {
+        holdings.stream()
+                .flatMap(holding -> holding.getCompanies().stream())
+                .forEach(consumer);
     }
 
     /**
