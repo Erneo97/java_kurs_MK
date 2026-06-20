@@ -49,6 +49,8 @@ public class Exercises {
         System.out.println("Waluty w jakich są rachunki:");
         getCurenciesSet().forEach(currency ->  System.out.println("\t" + currency));
 
+
+       System.out.println("Pracownik na literę M: " + getUser(user -> user.getFirstName().charAt(0) == 'M' && user.getSex() == Sex.MAN).getFirstName());
     }
 
     private static void showAomunts(Map<String, Account> mapAcounts) {
@@ -153,7 +155,7 @@ public class Exercises {
                 .forEach(consumer);
     }
 
-    /**
+    /** TODO
      * Wyszukuje najbogatsza kobietę i zwraca ją. Metoda musi uzwględniać to że rachunki są w różnych walutach.
      */
     //pomoc w rozwiązaniu problemu w zadaniu: https://stackoverflow.com/a/55052733/9360524
@@ -189,8 +191,9 @@ public class Exercises {
      * Zwraca pierwszego z brzegu użytkownika dla podanego warunku. W przypadku kiedy nie znajdzie użytkownika, wyrzuca
      * wyjątek IllegalArgumentException.
      */
-    public static User getUser(final Predicate<User> predicate) {
-        return null;
+    public static User getUser(final Predicate<User> predicate)  throws IllegalArgumentException {
+        Optional<User> optionalUser =  getUserStream().filter(predicate).findAny();
+        return optionalUser.orElseThrow(IllegalArgumentException::new);
     }
 
     /**
