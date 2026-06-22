@@ -26,8 +26,8 @@ public class Smartfon extends Komorka {
         return switch (numberBelongsToFriend(number)) {
             case true -> {
                 Optional<Osoba> foundFriend = findZnajomyByNumber(number);
-                if( foundFriend.isEmpty()) {
-                    yield  "";
+                if (foundFriend.isEmpty()) {
+                    yield "";
                 }
                 Osoba osoba = foundFriend.get();
                 yield String.format("%s %s - %s", osoba.imie(), osoba.nazwisko(), osoba.numer());

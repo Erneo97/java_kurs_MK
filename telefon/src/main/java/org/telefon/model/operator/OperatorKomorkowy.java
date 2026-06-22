@@ -55,7 +55,7 @@ public class OperatorKomorkowy implements Operator {
         }
     }
 
-    public void displayAllNumbers( ) {
+    public void displayAllNumbers() {
         System.out.printf("Wyswietl numer telefonu operatora (%d numerów): \n", telefonyWSieci.size());
         for (Telefon telefon : telefonyWSieci.values()) {
             System.out.println(telefon.getInterfejsKomunikacyjny());
