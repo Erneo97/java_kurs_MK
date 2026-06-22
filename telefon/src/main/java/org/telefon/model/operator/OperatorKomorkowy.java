@@ -1,5 +1,6 @@
 package org.telefon.model.operator;
 
+import org.telefon.exeption.PhoneNumberIsOfflineExeption;
 import org.telefon.model.telefon.Telefon;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ public class OperatorKomorkowy implements Operator {
     Map<String, Telefon> telefonyWSieci = new HashMap<>();
 
     @Override
-    public void dodajTelefon(Telefon telefon) {
+    public void dodajTelefon(Telefon telefon) throws PhoneNumberIsOfflineExeption {
 
     }
 
@@ -19,7 +20,7 @@ public class OperatorKomorkowy implements Operator {
     }
 
     @Override
-    public void dzwonNaNumer(String numer) {
+    public void dzwonNaNumer(String numer) throws PhoneNumberIsOfflineExeption {
 
     }
 }
