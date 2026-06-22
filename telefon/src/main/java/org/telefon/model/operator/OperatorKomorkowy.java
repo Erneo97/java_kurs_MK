@@ -14,7 +14,7 @@ public class OperatorKomorkowy implements Operator {
     @Override
     public void dodajTelefon(Telefon telefon) throws PhoneNumberAlredyExistsExeption {
         Optional<String> optionalFoundNumber = findPhoneNumberOnline(telefon.getInterfejsKomunikacyjny());
-        if(optionalFoundNumber.isPresent()){
+        if (optionalFoundNumber.isPresent()) {
             throw new PhoneNumberAlredyExistsExeption(String.format("Numer telefonu %s istnieje", optionalFoundNumber.get()));
         }
 
@@ -30,7 +30,10 @@ public class OperatorKomorkowy implements Operator {
 
     @Override
     public void usunTelefon(Telefon telefon) {
-
+        Optional<String> optionalFoundNumber = findPhoneNumberOnline(telefon.getInterfejsKomunikacyjny());
+        if (optionalFoundNumber.isPresent()) {
+            telefonyWSieci.remove(telefon.getInterfejsKomunikacyjny());
+        }
     }
 
     @Override
