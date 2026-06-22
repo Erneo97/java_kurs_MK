@@ -1,31 +1,28 @@
 package org.telefon.model.telefon;
 
+import org.telefon.exeption.PhoneCallHistoryyFullExeption;
 import org.telefon.exeption.PhoneNumberAlredyExistsExeption;
+import org.telefon.exeption.PhoneNumberIsOfflineException;
 import org.telefon.model.operator.Operator;
 
 import java.awt.*;
 import java.util.Objects;
 
-public abstract class Telefon{
+public abstract class Telefon {
     protected String interfejsKomunikacyjny;
     protected Color color;
-    Operator operator;
-    boolean conected;
+    protected Operator operator;
+    private boolean conected;
 
-    public Telefon(String interfejsKomunikacyjny, Color color, Operator operator){
+    public Telefon(String interfejsKomunikacyjny, Color color, Operator operator) {
         this.interfejsKomunikacyjny = interfejsKomunikacyjny;
         this.color = color;
         this.operator = operator;
 
-        try {
-            operator.dodajTelefon(this);
-            conected = true;
-        } catch (PhoneNumberAlredyExistsExeption e) {
-            conected = false;
-        }
+        tryToConnect();
     }
 
-    protected void tryToConnect() {
+    protected final void tryToConnect() {
         try {
             operator.dodajTelefon(this);
             conected = true;
@@ -50,5 +47,11 @@ public abstract class Telefon{
         return Objects.hash(interfejsKomunikacyjny, color);
     }
 
-    public abstract void odbierz(String numerTelefonu);
+    public abstract void odbierz(String numerTelefonu) throws PhoneCallHistoryyFullExeption;
+
+    public abstract void zadzwon(String numerTelefonu) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption;
+
+    public boolean isConected() {
+        return conected;
+    }
 }

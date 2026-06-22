@@ -1,5 +1,6 @@
 package org.telefon.model.operator;
 
+import org.telefon.exeption.PhoneCallHistoryyFullExeption;
 import org.telefon.exeption.PhoneNumberAlredyExistsExeption;
 import org.telefon.exeption.PhoneNumberIsOfflineException;
 import org.telefon.model.telefon.Telefon;
@@ -40,7 +41,11 @@ public class OperatorKomorkowy implements Operator {
     public void dzwonNaNumer(String numerDzwonicy, String numerOdbierajacy) throws PhoneNumberIsOfflineException {
         checkNumberIsOnline(numerDzwonicy);
         checkNumberIsOnline(numerOdbierajacy);
-        telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
+        try {
+            telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
+        } catch (PhoneCallHistoryyFullExeption e) {
+           System.out.println(e.getMessage());
+        }
     }
 
     private void checkNumberIsOnline(String numberToCheck) throws PhoneNumberIsOfflineException {
