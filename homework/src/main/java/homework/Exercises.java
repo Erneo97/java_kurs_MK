@@ -26,11 +26,11 @@ public class Exercises {
         System.out.println("Liczba pracowników w firmach: " + getAllUserAmount());
         System.out.println("Lista firm LinkedList " + getAllCompaniesNamesAsLinkedList());
 
-        System.out.println("\nLista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.MAN));
-        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getFirstName().charAt(0) == 'M'));
-        System.out.println("Lista firm LinkedList " + getUsersForPredicate(user -> user.getSex() == Sex.WOMAN));
+        System.out.println("\nLista użytkowników (MAN):     " + getUsersForPredicate(user -> user.getSex() == Sex.MAN));
+        System.out.println("Lista użytkowników (first M): " + getUsersForPredicate(user -> user.getFirstName().charAt(0) == 'M'));
+        System.out.println("Lista użytkowników (WOMAN):   " + getUsersForPredicate(user -> user.getSex() == Sex.WOMAN));
 
-        System.out.println("executeForEachCompany println nazwa ");
+        System.out.println("\nexecuteForEachCompany println nazwa ");
         executeForEachCompany(company -> System.out.println("\t " + company.getName()));
 
         Map<String, Account> mapAcounts = createAccountsMap();
