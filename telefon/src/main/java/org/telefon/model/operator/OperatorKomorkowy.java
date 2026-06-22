@@ -44,14 +44,21 @@ public class OperatorKomorkowy implements Operator {
         try {
             telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
         } catch (PhoneCallHistoryyFullExeption e) {
-           System.out.println(e.getMessage());
+//           System.out.println(e.getMessage());
         }
     }
 
     private void checkNumberIsOnline(String numberToCheck) throws PhoneNumberIsOfflineException {
         Optional<String> optionalFoundNumber = findPhoneNumberOnline(numberToCheck);
-        if (optionalFoundNumber.isPresent()) {
+        if (optionalFoundNumber.isEmpty()) {
             throw new PhoneNumberIsOfflineException(String.format("Numer telefonu %s istnieje", numberToCheck));
+        }
+    }
+
+    public void displayAllNumbers( ) {
+        System.out.printf("Wyswietl numer telefonu operatora (%d numerów): \n", telefonyWSieci.size());
+        for (Telefon telefon : telefonyWSieci.values()) {
+            System.out.println(telefon.getInterfejsKomunikacyjny());
         }
     }
 }
