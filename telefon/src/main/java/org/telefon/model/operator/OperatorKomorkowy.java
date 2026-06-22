@@ -1,7 +1,7 @@
 package org.telefon.model.operator;
 
 import org.telefon.exeption.PhoneNumberAlredyExistsExeption;
-import org.telefon.exeption.PhoneNumberIsOfflineExeption;
+import org.telefon.exeption.PhoneNumberIsOfflineException;
 import org.telefon.model.telefon.Telefon;
 
 import java.util.HashMap;
@@ -37,7 +37,16 @@ public class OperatorKomorkowy implements Operator {
     }
 
     @Override
-    public void dzwonNaNumer(String numer) throws PhoneNumberIsOfflineExeption {
+    public void dzwonNaNumer(String numerDzwonicy, String numerOdbierajacy) throws PhoneNumberIsOfflineException {
+        checkNumberIsOnline(numerDzwonicy);
+        checkNumberIsOnline(numerOdbierajacy);
+        telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
+    }
 
+    private void checkNumberIsOnline(String numberToCheck) throws PhoneNumberIsOfflineException {
+        Optional<String> optionalFoundNumber = findPhoneNumberOnline(numberToCheck);
+        if (optionalFoundNumber.isPresent()) {
+            throw new PhoneNumberIsOfflineException(String.format("Numer telefonu %s istnieje", numberToCheck));
+        }
     }
 }
