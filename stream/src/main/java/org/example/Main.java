@@ -2,7 +2,9 @@ package org.example;
 
 import org.example.model.Employee;
 import org.example.model.Point;
+import org.example.model.Product;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -11,13 +13,29 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-        testPoint();
-        testIntegerArray();
-        testSFunctionString();
+        List<Product> products = List.of(
+                new Product("Mleko", "Spozywcze", 4.50),
+                new Product("Telewizor", "Elektronika", 2300),
+                new Product("Chleb", "Spozywcze", 6.00),
+                new Product("Sluchawki", "Elektronika", 199),
+                new Product("Dlugopis", "Biuro", 3.20),
+                new Product("Biurko", "Biuro", 650)
+        );
 
-        testExe8Employee();
+        products.stream()
+                .collect(Collectors.groupingBy(
+                        product -> product.price() < 50 ? "TANIE" : "DROGIE",
+                        Collectors.mapping(product -> product.name().toUpperCase(), Collectors.joining(" | ", "[", "]")))
+                )
+                .forEach((key, value) -> System.out.println(key + " -> " + value));
 
-        testExercise9String();
+//        testPoint();
+//        testIntegerArray();
+//        testSFunctionString();
+//
+//        testExe8Employee();
+//
+//        testExercise9String();
     }
 
     private static void testExercise9String() {
@@ -58,8 +76,8 @@ public class Main {
 
     private static void showGroupedEmployeesByDepartament(Map<String, List<Employee>> groupedEmployees) {
         System.out.println("Pogrupowani pracownicy do departamentu:");
-        for (String departament : groupedEmployees.keySet() ) {
-            System.out.printf("%12s: %s\n",departament, groupedEmployees.get(departament));
+        for (String departament : groupedEmployees.keySet()) {
+            System.out.printf("%12s: %s\n", departament, groupedEmployees.get(departament));
         }
     }
 

@@ -9,6 +9,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -77,7 +78,7 @@ public class Exercises {
      */
     public static long getHoldingsWhereAreCompanies() {
         return holdings.stream()
-                .filter(holding -> holding.getCompanies().size() > 1)
+                .filter(holding -> !holding.getCompanies().isEmpty())
                 .count();
     }
 
@@ -95,11 +96,10 @@ public class Exercises {
      * String ma postać: (Coca-Cola, Nestle, Pepsico)
      */
     public static String getHoldingNamesAsString() {
-        String holdingStr = holdings.stream()
+        return holdings.stream()
                 .map(Holding::getName)
                 .sorted()
-                .collect(Collectors.joining(", "));
-        return String.format("(%s)", holdingStr);
+                .collect(Collectors.joining(", ", "(", ")"));
     }
 
     /**
@@ -128,7 +128,7 @@ public class Exercises {
     public static LinkedList<String> getAllCompaniesNamesAsLinkedList() {
         return holdings.stream()
                 .map(Holding::getName)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), LinkedList::new));
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -212,7 +212,7 @@ public class Exercises {
         return getAccoutStream()
                 .collect(Collectors.toMap(
                         Account::getNumber,
-                        account -> account
+                        Function.identity()
                 ));
     }
 
