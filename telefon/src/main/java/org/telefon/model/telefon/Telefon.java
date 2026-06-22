@@ -25,7 +25,7 @@ public abstract class Telefon{
         }
     }
 
-    private void tryToConnect() {
+    protected void tryToConnect() {
         try {
             operator.dodajTelefon(this);
             conected = true;
