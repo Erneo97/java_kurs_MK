@@ -1,5 +1,6 @@
 package org.telefon.model.telefon;
 
+import org.telefon.exeption.NumberFormatExeption;
 import org.telefon.exeption.PhoneCallHistoryyFullExeption;
 import org.telefon.exeption.PhoneNumberAlredyExistsExeption;
 import org.telefon.exeption.PhoneNumberIsOfflineException;
@@ -49,9 +50,11 @@ public abstract class Telefon {
 
     public abstract void odbierz(String numerTelefonu) throws PhoneCallHistoryyFullExeption;
 
-    public abstract void zadzwon(String numerTelefonu) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption;
+    public abstract void zadzwon(String numerTelefonu) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption, NumberFormatExeption;
 
     public boolean isConected() {
         return conected;
     }
+
+    public abstract void wyswietlHistoriePolaczen();
 }
