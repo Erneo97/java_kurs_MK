@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="calculator" />
+        <module name="library" />
         <module name="homework" />
         <module name="stream" />
         <module name="libraryV2" />
+        <module name="telefon" />
         <module name="myListLIFO" />
         <module name="calculatorInterfaceFunction" />
         <module name="Polimorfizm" />
