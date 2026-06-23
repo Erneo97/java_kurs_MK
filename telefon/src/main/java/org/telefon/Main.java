@@ -12,7 +12,6 @@ import org.telefon.model.telefon.Telefon;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 public class Main {
     private static final List<Telefon> telefons = new ArrayList<>();
@@ -33,7 +32,8 @@ public class Main {
     }
 
     private static int randNumber0_999() {
-        return (int) (Math.random() * 1_000);
+        Random rand = new Random();
+        return rand.nextInt(1000);
     }
 
     private static void initTelefons() {
