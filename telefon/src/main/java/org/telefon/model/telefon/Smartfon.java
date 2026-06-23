@@ -22,23 +22,22 @@ public class Smartfon extends Komorka {
                 .forEach(numer -> System.out.printf("\t%s\n", numer));
     }
 
-    private String mapNumberToDisplayString(String number) {
-        return switch (numberBelongsToFriend(number)) {
-            case true -> {
-                Optional<Osoba> foundFriend = findZnajomyByNumber(number);
-                if (foundFriend.isEmpty()) {
-                    yield "";
-                }
-                Osoba osoba = foundFriend.get();
-                yield String.format("%s %s - %s", osoba.imie(), osoba.nazwisko(), osoba.numer());
-            }
-            case false -> {
-                yield String.format("%s", number);
-            }
-        };
+    public void addFriend(Osoba osoba) {
+        if (!numberBelongsToFriend(osoba.nazwisko())) {
+            znajomi.add(osoba);
+        }
     }
 
-    private Optional<Osoba> findZnajomyByNumber(String number) {
+    private String mapNumberToDisplayString(String number) {
+        Optional<Osoba> foundFriend = findFriendByNumber(number);
+        if (foundFriend.isPresent()) {
+            Osoba osoba = foundFriend.get();
+            return osoba.toString();
+        }
+        return number;
+    }
+
+    private Optional<Osoba> findFriendByNumber(String number) {
         return znajomi.stream()
                 .filter(znajomy -> znajomy.numer().equals(number))
                 .findFirst();
@@ -47,11 +46,5 @@ public class Smartfon extends Komorka {
     private boolean numberBelongsToFriend(String number) {
         return znajomi.stream()
                 .anyMatch(znajomy -> znajomy.numer().equals(number));
-    }
-
-    public void addFriend(Osoba osoba) {
-        if (!numberBelongsToFriend(osoba.nazwisko())) {
-            znajomi.add(osoba);
-        }
     }
 }
