@@ -14,7 +14,7 @@ public class Komorka extends Telefon {
     protected String[] polaczennia = new String[SIZE_OF_CALL_HISTORY];
     protected int pozycjaPolaczenia = 0;
 
-    private void addCalltoHistory(String number) throws PhoneCallHistoryyFullExeption {
+    private void addCallToHistory(String number) throws PhoneCallHistoryyFullExeption {
         isCallHistoryFull();
         polaczennia[pozycjaPolaczenia++] = number;
     }
@@ -25,7 +25,7 @@ public class Komorka extends Telefon {
 
     @Override
     public void odbierz(String numerTelefonu) throws PhoneCallHistoryyFullExeption {
-        addCalltoHistory(numerTelefonu);
+        addCallToHistory(numerTelefonu);
     }
 
     @Override
@@ -34,14 +34,13 @@ public class Komorka extends Telefon {
         if (!isCorretNumberFormat(numerTelefonu)) {
             throw new NumberFormatException(String.format("Zły format numeru telefonu %s - powinnien być XXX-XXX-XXX", numerTelefonu));
         }
-
         if (!isConected()) {
             throw new PhoneNumberIsOfflineException(String.format("Numer %s - jest po za zasiegiem", numerTelefonu));
         }
 
         try {
             operator.dzwonNaNumer(this.interfejsKomunikacyjny, numerTelefonu);
-            addCalltoHistory(numerTelefonu);
+            addCallToHistory(numerTelefonu);
         } catch (PhoneNumberIsOfflineException e) {
             System.err.printf("Numer telefonu %s - jest nieosiągalny", numerTelefonu);
         }

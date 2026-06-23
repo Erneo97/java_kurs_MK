@@ -61,14 +61,16 @@ public class Main {
     }
 
     private static void dzwonDoWszystkichOdWszystkich() {
-        telefons.forEach(telefon -> {
-            phoneNumbers.forEach(numerTelefonu -> {
-                try {
-                    telefon.zadzwon(numerTelefonu);
-                } catch (PhoneNumberIsOfflineException | PhoneCallHistoryyFullExeption | NumberFormatExeption e) {
-                    System.err.printf("%s dla numeru %s\n%n", e.getMessage(), telefon.getInterfejsKomunikacyjny());
-                }
-            });
+        telefons.forEach(Main::dzwonNaWszystkieNumeryZTelefonu);
+    }
+
+    private static void dzwonNaWszystkieNumeryZTelefonu(Telefon telefon) {
+        phoneNumbers.forEach(numerTelefonu -> {
+            try {
+                telefon.zadzwon(numerTelefonu);
+            } catch (PhoneNumberIsOfflineException | PhoneCallHistoryyFullExeption | NumberFormatExeption e) {
+                System.err.printf("%s dla numeru %s\n%n", e.getMessage(), telefon.getInterfejsKomunikacyjny());
+            }
         });
     }
 

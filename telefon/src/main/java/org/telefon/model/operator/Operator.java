@@ -9,5 +9,5 @@ public interface Operator {
 
     void usunTelefon(Telefon telefon);
 
-    public void dzwonNaNumer(String numerDzwonicay, String numerOdbierajacy) throws PhoneNumberIsOfflineException;
+    void dzwonNaNumer(String numerDzwonicay, String numerOdbierajacy) throws PhoneNumberIsOfflineException;
 }

@@ -18,7 +18,6 @@ public class OperatorKomorkowy implements Operator {
         if (optionalFoundNumber.isPresent()) {
             throw new PhoneNumberAlredyExistsExeption(String.format("Numer telefonu %s istnieje", optionalFoundNumber.get()));
         }
-
         telefonyWSieci.put(telefon.getInterfejsKomunikacyjny(), telefon);
     }
 
