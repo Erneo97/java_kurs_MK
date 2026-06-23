@@ -10,11 +10,13 @@ import java.awt.*;
 import java.util.Objects;
 
 public abstract class Telefon {
+    // POLA KLASY
     protected String interfejsKomunikacyjny;
     protected Color color;
     protected Operator operator;
     private boolean conected;
 
+    // KONSTRUKTORY
     public Telefon(String interfejsKomunikacyjny, Color color, Operator operator) {
         this.interfejsKomunikacyjny = interfejsKomunikacyjny;
         this.color = color;
@@ -23,15 +25,14 @@ public abstract class Telefon {
         tryToConnect();
     }
 
-    protected final void tryToConnect() {
-        try {
-            operator.dodajTelefon(this);
-            conected = true;
-        } catch (PhoneNumberAlredyExistsExeption e) {
-            conected = false;
-        }
-    }
+    // METODY ABSTRAKCYJNE
+    public abstract void odbierz(String numerTelefonu) throws PhoneCallHistoryyFullExeption;
 
+    public abstract void zadzwon(String numerTelefonu) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption, NumberFormatExeption;
+
+    public abstract void wyswietlHistoriePolaczen();
+
+    // METODY PUBLICZNE
     public String getInterfejsKomunikacyjny() {
         return interfejsKomunikacyjny;
     }
@@ -48,13 +49,17 @@ public abstract class Telefon {
         return Objects.hash(interfejsKomunikacyjny, color);
     }
 
-    public abstract void odbierz(String numerTelefonu) throws PhoneCallHistoryyFullExeption;
-
-    public abstract void zadzwon(String numerTelefonu) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption, NumberFormatExeption;
-
     public boolean isConected() {
         return conected;
     }
 
-    public abstract void wyswietlHistoriePolaczen();
+    // METODY POMOCNICZE (private / protected)
+    protected final void tryToConnect() {
+        try {
+            operator.dodajTelefon(this);
+            conected = true;
+        } catch (PhoneNumberAlredyExistsExeption e) {
+            conected = false;
+        }
+    }
 }
