@@ -12,7 +12,7 @@ import org.telefon.model.telefon.Telefon;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 public class Main {
     private static final List<Telefon> telefons = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Main {
     }
 
     private static int randNumber0_999() {
-        return ThreadLocalRandom.current().nextInt(0, 999);
+        return (int) (Math.random() * 1_000);
     }
 
     private static void initTelefons() {
