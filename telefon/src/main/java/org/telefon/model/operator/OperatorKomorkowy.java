@@ -21,13 +21,6 @@ public class OperatorKomorkowy implements Operator {
         telefonyWSieci.put(telefon.getInterfejsKomunikacyjny(), telefon);
     }
 
-    private Optional<String> findPhoneNumberOnline(String searchedNumber) {
-        return telefonyWSieci.keySet()
-                .stream()
-                .filter(numerTelefonu -> numerTelefonu.equals(searchedNumber))
-                .findAny();
-    }
-
     @Override
     public void usunTelefon(Telefon telefon) {
         Optional<String> optionalFoundNumber = findPhoneNumberOnline(telefon.getInterfejsKomunikacyjny());
@@ -36,28 +29,32 @@ public class OperatorKomorkowy implements Operator {
         }
     }
 
+    public void displayAllNumbers() {
+        System.out.printf("Wyswietl numer telefonu operatora (%d numerów): \n", telefonyWSieci.size());
+        for (Telefon telefon : telefonyWSieci.values()) {
+            System.out.println(telefon.getInterfejsKomunikacyjny());
+        }
+    }
+
     @Override
-    public void dzwonNaNumer(String numerDzwonicy, String numerOdbierajacy) throws PhoneNumberIsOfflineException {
+    public void dzwonNaNumer(String numerDzwonicy, String numerOdbierajacy) throws PhoneNumberIsOfflineException, PhoneCallHistoryyFullExeption {
         checkNumberIsOnline(numerDzwonicy);
         checkNumberIsOnline(numerOdbierajacy);
-        try {
-            telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
-        } catch (PhoneCallHistoryyFullExeption e) {
-//           System.out.println(e.getMessage());
-        }
+
+        telefonyWSieci.get(numerOdbierajacy).odbierz(numerDzwonicy);
+    }
+
+    private Optional<String> findPhoneNumberOnline(String searchedNumber) {
+        return telefonyWSieci.keySet()
+                .stream()
+                .filter(numerTelefonu -> numerTelefonu.equals(searchedNumber))
+                .findAny();
     }
 
     private void checkNumberIsOnline(String numberToCheck) throws PhoneNumberIsOfflineException {
         Optional<String> optionalFoundNumber = findPhoneNumberOnline(numberToCheck);
         if (optionalFoundNumber.isEmpty()) {
             throw new PhoneNumberIsOfflineException(String.format("Numer telefonu %s istnieje", numberToCheck));
-        }
-    }
-
-    public void displayAllNumbers() {
-        System.out.printf("Wyswietl numer telefonu operatora (%d numerów): \n", telefonyWSieci.size());
-        for (Telefon telefon : telefonyWSieci.values()) {
-            System.out.println(telefon.getInterfejsKomunikacyjny());
         }
     }
 }
