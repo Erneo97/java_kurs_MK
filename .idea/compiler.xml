@@ -2,26 +2,29 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="calculator" />
-        <module name="library" />
+        <module name="Bank" />
         <module name="homework" />
-        <module name="stream" />
         <module name="libraryV2" />
-        <module name="telefon" />
-        <module name="myListLIFO" />
         <module name="calculatorInterfaceFunction" />
-        <module name="Polimorfizm" />
-        <module name="Fibonacci" />
         <module name="enum" />
         <module name="vehicle" />
+        <module name="library" />
+        <module name="stream" />
+        <module name="telefon" />
+        <module name="myListLIFO" />
+        <module name="Polimorfizm" />
+        <module name="Fibonacci" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="helloWorld" target="17" />
+      <module name="lombokTest" target="23" />
     </bytecodeTargetLevel>
   </component>
 </project>
