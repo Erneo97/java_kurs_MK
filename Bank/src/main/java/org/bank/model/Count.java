@@ -1,18 +1,16 @@
 package org.bank.model;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
 
 @ToString
+@AllArgsConstructor
 public abstract class Count {
     protected final Person owner;
     protected BigDecimal balance;
-
-    public Count(Person owner, BigDecimal balance) {
-        this.owner = owner;
-        this.balance = balance;
-    }
 
     /**
      * operacja wpłaty podanej kwoty, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku,
