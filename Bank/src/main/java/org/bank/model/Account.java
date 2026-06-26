@@ -3,7 +3,7 @@ package org.bank.model;
 import java.math.BigDecimal;
 
 public class Account extends Count {
-    public static double interestRate = 0.05;
+    protected static double interestRate = 0.05;
 
     public Account(Person owner, BigDecimal balance) {
         super(owner, balance);
