@@ -1,10 +1,13 @@
 package org.bank.model;
 
+import lombok.ToString;
+
 import java.math.BigDecimal;
 
+@ToString
 public abstract class Count {
-    private final Person owner;
-    private BigDecimal balance;
+    protected final Person owner;
+    protected BigDecimal balance;
 
     public Count(Person owner, BigDecimal balance) {
         this.owner = owner;
@@ -43,12 +46,10 @@ public abstract class Count {
         return withdrawFromAccount(amount) && destination.depositIntoAccount(amount);
     }
 
+    /**
+     * wyświetlająca komunikat: "Rachunek podstawowy".
+     */
     public void update() {
         System.out.println("Rachunek podstawowy.");
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s %s", owner, balance);
     }
 }
