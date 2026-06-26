@@ -5,11 +5,11 @@ public class Main {
         long timeToTerminateThreads = 3000;
         Thread threadPing = new Thread(new PrintMessageThread("Ping"));
         Thread threadPong = new Thread(new PrintMessageThread(" Pong\n"));
-
-        threadPing.start();
-        threadPong.start();
-
         try {
+            threadPing.start();
+            Thread.sleep(500);
+            threadPong.start();
+
             threadPing.join(timeToTerminateThreads);
             threadPong.join(timeToTerminateThreads);
         } catch (InterruptedException e) {
