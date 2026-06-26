@@ -11,7 +11,7 @@ public class PrintMessageThread implements Runnable {
     public void run() {
         try {
             while (true) {
-                System.out.println(message);
+                System.out.print(message);
                 Thread.sleep(1000);
             }
         } catch (InterruptedException e) {

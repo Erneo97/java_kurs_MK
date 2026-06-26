@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         long timeToTerminateThreads = 3000;
         Thread threadPing = new Thread(new PrintMessageThread("Ping"));
-        Thread threadPong = new Thread(new PrintMessageThread("Pong"));
+        Thread threadPong = new Thread(new PrintMessageThread(" Pong\n"));
 
         threadPing.start();
         threadPong.start();
