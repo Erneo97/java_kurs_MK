@@ -19,6 +19,10 @@ public class Main {
         accounts.forEach(account -> account.withdrawFromAccount(BigDecimal.valueOf(1000)));
         accounts.forEach(account -> account.depositIntoAccount(BigDecimal.valueOf(400)));
 
+        accounts.forEach(Count::update);
+
+        accounts.get(3).transferFunds(accounts.get(0), BigDecimal.valueOf(1500));
+
         System.out.println("Informacje o kontach:");
         accounts.forEach(System.out::println);
     }

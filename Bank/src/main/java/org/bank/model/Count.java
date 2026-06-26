@@ -18,7 +18,7 @@ public abstract class Count {
      * operacja wpłaty podanej kwoty, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku,
      */
     public boolean depositIntoAccount(BigDecimal amount) {
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
             return false;
         }
         balance = balance.add(amount);

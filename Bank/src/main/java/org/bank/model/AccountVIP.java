@@ -15,7 +15,7 @@ public class AccountVIP extends Account{
 
     @Override
     public boolean withdrawFromAccount(BigDecimal amount) {
-        if (balance.compareTo(amount.add(debetLimit)) <= 0) {
+        if (balance.compareTo(amount.add(debetLimit)) < 0) {
             return false;
         }
         balance = balance.subtract(amount);
