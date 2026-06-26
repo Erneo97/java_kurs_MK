@@ -15,24 +15,32 @@ public abstract class Account {
      * operacja wpłaty podanej kwoty, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku,
      */
     public boolean depositIntoAccount(BigDecimal amount) {
-        // TODO;
-        return false;
+        if( amount.compareTo(BigDecimal.ZERO) <= 0) {
+            return false;
+        }
+        balance = balance.add(amount);
+        return true;
     }
 
     /**
      * operacja wypłaty podanej kwoty, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku (np. kiedy na rachunku jest za mało środków),
      */
     public boolean withdrawFromAccount(BigDecimal amount) {
-        // TODO;
-        return false;
+        if( balance.compareTo(amount) <= 0) {
+            return false;
+        }
+        balance = balance.subtract(amount);
+        return true;
     }
 
     /**
      * operacja przelewu podanej kwoty z rachunku na podany (jako argument metody) rachunek, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku,
      */
     public boolean transferFunds(Account destination, BigDecimal amount) {
-        // TODO;
-        return false;
+        if( destination == null ) {
+            return false;
+        }
+        return withdrawFromAccount(amount) && destination.depositIntoAccount(amount);
     }
 
     public void update() {
