@@ -29,6 +29,6 @@ public class AccountVIP extends Account{
 
     @Override
     public String toString() {
-        return String.format("%s %s pln [VIP] {%.2f}", owner, balance, individualInterestRate);
+        return String.format("%s, %s pln [VIP] {%.2f}", owner, balance, individualInterestRate);
     }
 }
