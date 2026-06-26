@@ -19,6 +19,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s (%s) - %d", name, surname, getPESEL(), getAge());
+        return String.format("%s %s (%s) - %d lat", name, surname, getPESEL(), getAge());
     }
 }
