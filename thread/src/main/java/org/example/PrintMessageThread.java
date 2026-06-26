@@ -10,7 +10,8 @@ public class PrintMessageThread implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
+            int duration = 10;
+            for (int i = 0; i < duration; i++) {
                 System.out.print(message);
                 Thread.sleep(1000);
             }
@@ -18,7 +19,5 @@ public class PrintMessageThread implements Runnable {
             System.err.println(e);
             throw new RuntimeException(e);
         }
-
-
     }
 }
