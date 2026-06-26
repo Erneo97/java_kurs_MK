@@ -1,7 +1,6 @@
 package org.bank.model;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;

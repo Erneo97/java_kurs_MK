@@ -1,5 +1,4 @@
 package org.bank.model;
-
 import java.math.BigDecimal;
 
 public class Account extends Count {
