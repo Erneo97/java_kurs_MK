@@ -2,11 +2,11 @@ package org.bank.model;
 
 import java.math.BigDecimal;
 
-public abstract class Account {
+public abstract class Count {
     private final Person owner;
     private BigDecimal balance;
 
-    public Account(Person owner, BigDecimal balance) {
+    public Count(Person owner, BigDecimal balance) {
         this.owner = owner;
         this.balance = balance;
     }
