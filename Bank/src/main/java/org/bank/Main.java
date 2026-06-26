@@ -26,6 +26,7 @@ public class Main {
         System.out.println("\nInformacje o kontach przed zmianą oprocentowania:");
         accounts.forEach(System.out::println);
         Account.changeInterestRate(0.2);
+        ((AccountVIP)accounts.get(2)).setIndividualInterestRate(0.08);
 
         System.out.println("Informacje o kontach:");
         accounts.forEach(System.out::println);

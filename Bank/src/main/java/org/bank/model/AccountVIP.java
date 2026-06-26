@@ -1,9 +1,12 @@
 package org.bank.model;
 
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 public class AccountVIP extends Account{
-    protected final double individualInterestRate;
+    @Setter
+    protected double individualInterestRate;
     protected final BigDecimal debetLimit;
 
     public AccountVIP(Person owner, BigDecimal balance, double individualInterestRate, BigDecimal debetLimit) {

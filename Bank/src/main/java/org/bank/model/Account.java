@@ -1,5 +1,7 @@
 package org.bank.model;
 
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 public class Account extends Count {
