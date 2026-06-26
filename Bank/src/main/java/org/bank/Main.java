@@ -26,7 +26,7 @@ public class Main {
         System.out.println("\nInformacje o kontach przed zmianą oprocentowania:");
         accounts.forEach(System.out::println);
         Account.changeInterestRate(0.2);
-        ((AccountVIP)accounts.get(2)).setIndividualInterestRate(0.08);
+        ((AccountVIP) accounts.get(2)).setIndividualInterestRate(0.08);
 
         System.out.println("Informacje o kontach:");
         accounts.forEach(System.out::println);
@@ -35,7 +35,7 @@ public class Main {
     public static void initAccounts() {
         accounts.add(new Account(new Person("Jan", "Nowak", LocalDate.of(1957, 10, 6), "57100606456"),
                 BigDecimal.valueOf(4600)));
-        accounts.add( new Account(
+        accounts.add(new Account(
                 new Person("Anna", "Kowalska", LocalDate.of(1988, 3, 15), "88031512345"),
                 BigDecimal.valueOf(3600)
         ));

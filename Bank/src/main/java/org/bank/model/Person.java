@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Person {
     private String name, surname;
     private LocalDate birthDate;
-    private final String PESEL;
+    private final String pesel;
 
     public int getAge() {
         return LocalDate.now().getYear() - birthDate.getYear();
@@ -19,6 +19,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s (%s) - %d lat", name, surname, getPESEL(), getAge());
+        return String.format("%s %s (%s) - %d lat", name, surname, getPesel(), getAge());
     }
 }

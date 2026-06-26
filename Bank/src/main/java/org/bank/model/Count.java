@@ -40,11 +40,7 @@ public abstract class Count {
      * operacja przelewu podanej kwoty z rachunku na podany (jako argument metody) rachunek, zwracająca true w przypadku sukcesu operacji, false w przeciwnym przypadku,
      */
     public boolean transferFunds(Count destination, BigDecimal amount) {
-        if (destination == null) {
-            return false;
-        }
-
-        if (!this.withdrawFromAccount(amount)) {
+        if (destination == null || !this.withdrawFromAccount(amount)) {
             return false;
         }
 
