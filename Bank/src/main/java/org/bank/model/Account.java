@@ -20,6 +20,6 @@ public class Account extends Count {
 
     @Override
     public String toString() {
-        return String.format("%s %s", owner, balance);
+        return String.format("%s %s pln", owner, balance);
     }
 }

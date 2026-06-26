@@ -1,13 +1,44 @@
 package org.bank;
 
+import org.bank.model.Account;
+import org.bank.model.AccountVIP;
+import org.bank.model.Count;
 import org.bank.model.Person;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+    private static List<Count> accounts = new ArrayList<>();
+
     public static void main(String[] args) {
-        Person me = new Person("Michal", "Kaniewski", LocalDate.of(1997, 10, 9), "97100912345");
-        System.out.println("My age is "+ me.getAge());
-        System.out.println(me);
+        initAccounts();
+
+        accounts.forEach(account -> account.withdrawFromAccount(BigDecimal.valueOf(1000)));
+        accounts.forEach(account -> account.depositIntoAccount(BigDecimal.valueOf(400)));
+
+        System.out.println("Informacje o kontach:");
+        accounts.forEach(System.out::println);
+    }
+
+    public static void initAccounts() {
+        accounts.add(new Account(new Person("Jan", "Nowak", LocalDate.of(1957, 10, 6), "57100606456"),
+                BigDecimal.valueOf(4600)));
+        accounts.add( new Account(
+                new Person("Anna", "Kowalska", LocalDate.of(1988, 3, 15), "88031512345"),
+                BigDecimal.valueOf(3600)
+        ));
+        accounts.add(new AccountVIP(new Person("Jan", "Nowak", LocalDate.of(1957, 10, 6), "57100606456"),
+                BigDecimal.valueOf(6600),
+                0.2,
+                BigDecimal.valueOf(1000)));
+        accounts.add(new AccountVIP(
+                new Person("Piotr", "Wiśniewski", LocalDate.of(1995, 7, 21), "95072167890"),
+                BigDecimal.valueOf(15600),
+                0.10,
+                BigDecimal.valueOf(5000)
+        ));
     }
 }
