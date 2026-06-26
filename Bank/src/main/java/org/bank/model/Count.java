@@ -44,15 +44,14 @@ public abstract class Count {
             return false;
         }
 
-        if (!withdrawFromAccount(amount)) {
+        if (!this.withdrawFromAccount(amount)) {
             return false;
         }
 
         if (!destination.depositIntoAccount(amount)) {
-            depositIntoAccount(amount);
+            this.depositIntoAccount(amount);
             return false;
         }
-
         return true;
     }
 
