@@ -23,6 +23,10 @@ public class Main {
 
         accounts.get(3).transferFunds(accounts.get(0), BigDecimal.valueOf(1500));
 
+        System.out.println("\nInformacje o kontach przed zmianą oprocentowania:");
+        accounts.forEach(System.out::println);
+        Account.changeInterestRate(0.2);
+
         System.out.println("Informacje o kontach:");
         accounts.forEach(System.out::println);
     }

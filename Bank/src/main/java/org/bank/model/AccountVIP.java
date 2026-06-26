@@ -1,7 +1,6 @@
 package org.bank.model;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 
 public class AccountVIP extends Account{
     protected final double individualInterestRate;
