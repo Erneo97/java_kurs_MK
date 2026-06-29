@@ -15,12 +15,16 @@ public class SharedBuffer {
         if (sharedQueue.size() >= maxSize) {
             return;
         }
-
+        System.out.printf("%d) Wyprodukowano %s\n", sharedQueue.size() + 1, dataItem.toString());
         sharedQueue.add(dataItem);
     }
 
-    public DataItem consume() {
-        return sharedQueue.poll();
+    public void consume() {
+        if (sharedQueue.isEmpty()) {
+            return;
+        }
+
+        System.out.println("Skonsumowano " + sharedQueue.poll());
     }
 
 }
