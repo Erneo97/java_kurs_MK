@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public class PrintMessageThread implements Runnable {
     private final String message;

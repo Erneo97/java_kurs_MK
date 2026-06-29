@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.PrintMessageThread;
+
 public class Main {
     public static void main(String[] args) {
         long timeToTerminateThreads = 3000;
