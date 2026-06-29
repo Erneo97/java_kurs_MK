@@ -4,6 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Function;
 
 public class SharedBuffer {
     private int maxSize;
@@ -18,41 +19,41 @@ public class SharedBuffer {
     }
 
     public void produce(DataItem dataItem) {
-        try {
-            lock.lock();
+        criticalSection(() -> {
             while (sharedQueue.size() >= maxSize) {
                 isFullCondition.await();
             }
             System.out.printf("%d) Wyprodukowano %s\n", sharedQueue.size() + 1, dataItem.toString());
             sharedQueue.add(dataItem);
 
-            if( sharedQueue.size() >= maxSize){
+            if (sharedQueue.size() >= maxSize) {
                 isEmptyCondition.signalAll();
             }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            lock.unlock();
-        }
+        });
     }
 
     public void consume() {
-        try {
-            lock.lock();
+        criticalSection(() -> {
             while (sharedQueue.isEmpty()) {
                 isEmptyCondition.await();
             }
-            System.out.printf("%d) Skonsumowano %s\n", sharedQueue.size() , sharedQueue.poll());
+            System.out.printf("%d) Skonsumowano %s\n", sharedQueue.size(), sharedQueue.poll());
 
-            if(sharedQueue.isEmpty()) {
+            if (sharedQueue.isEmpty()) {
                 isFullCondition.signalAll();
             }
+        });
+    }
+
+    private void criticalSection(InteruptibleAction section) {
+        try {
+            lock.lock();
+            section.run();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }
-
     }
 
 }
