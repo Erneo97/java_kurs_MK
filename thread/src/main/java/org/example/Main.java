@@ -21,7 +21,7 @@ public class Main {
             while(true) {
                 shop.produce(new DataItem(LocalDateTime.now()));
                 try {
-                    Thread.sleep(rand.nextInt(0, 10_000));
+                    Thread.sleep(rand.nextInt(0, 1_000));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
