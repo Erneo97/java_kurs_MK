@@ -4,7 +4,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Function;
 
 public class SharedBuffer {
     private int maxSize;
@@ -55,5 +54,4 @@ public class SharedBuffer {
             lock.unlock();
         }
     }
-
 }
