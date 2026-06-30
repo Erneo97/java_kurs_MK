@@ -16,49 +16,38 @@ public class Main {
     public final static int COUNT_PRODUCERS = 1;
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(SIZE_EXECUTORS);
         SharedBuffer shop = new SharedBuffer(SIZE_BUFFER);
+        Runnable consumer = () -> consumerImplementation(shop);
+        Runnable producer = () -> producerImplementation(shop);
 
-        Runnable consumer = () -> {
-            while (true) {
-                System.out.print(Thread.currentThread().getName() + "  ");
-                shop.consume();
+        try (ExecutorService executorService = Executors.newFixedThreadPool(SIZE_EXECUTORS)) {
+            for (int i = 0; i < COUNT_CONSUMMERS; i++) {
+                executorService.execute(consumer);
             }
-        };
-        Runnable producer = () -> {
-            Random rand = new Random();
-            while (true) {
-                System.out.print(Thread.currentThread().getName() + "  ");
-                shop.produce(new DataItem(LocalDateTime.now()));
-                try {
-                    Thread.sleep(rand.nextInt(0, 1_000));
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            for (int i = 0; i < COUNT_PRODUCERS; i++) {
+                executorService.execute(producer);
             }
-        };
-
-        for (int i = 0; i < COUNT_CONSUMMERS; i++) {
-            executorService.execute(consumer);
-        }
-        for (int i = 0; i < COUNT_PRODUCERS; i++) {
-            executorService.execute(producer);
         }
     }
 
-    private static void basicThreadTest() {
-        long timeToTerminateThreads = 3000;
-        Thread threadPing = new Thread(new PrintMessageThread("Ping"));
-        Thread threadPong = new Thread(new PrintMessageThread(" Pong\n"));
-        try {
-            threadPing.start();
-            Thread.sleep(500);
-            threadPong.start();
+    private static void producerImplementation(SharedBuffer shop) {
+        Random rand = new Random();
+        while (true) {
+            System.out.print(Thread.currentThread().getName() + "  ");
+            shop.produce(new DataItem(LocalDateTime.now()));
+            try {
+                Thread.sleep(rand.nextInt(0, 1_000));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-            threadPing.join(timeToTerminateThreads);
-            threadPong.join(timeToTerminateThreads);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    }
+
+    private static void consumerImplementation(SharedBuffer shop) {
+        while (true) {
+            System.out.print(Thread.currentThread().getName() + "  ");
+            shop.consume();
         }
     }
 }

@@ -8,40 +8,41 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SharedBuffer {
     private int maxSize;
     private Queue<DataItem> sharedQueue = new ConcurrentLinkedQueue<>();
-
     private ReentrantLock lock = new ReentrantLock();
-    Condition isEmptyCondition = lock.newCondition();
-    Condition isFullCondition = lock.newCondition();
+    private Condition isEmptyCondition = lock.newCondition();
+    private Condition isFullCondition = lock.newCondition();
 
     public SharedBuffer(int maxSizeBuffer) {
         this.maxSize = maxSizeBuffer;
     }
 
     public void produce(DataItem dataItem) {
-        criticalSection(() -> {
-            while (sharedQueue.size() >= maxSize) {
-                isFullCondition.await();
-            }
-            System.out.printf("%d) Wyprodukowano %s\n", sharedQueue.size() + 1, dataItem.toString());
-            sharedQueue.add(dataItem);
-
-            if (sharedQueue.size() >= maxSize) {
-                isEmptyCondition.signalAll();
-            }
-        });
+        criticalSection(() -> this.produceInternal(dataItem));
     }
 
     public void consume() {
-        criticalSection(() -> {
-            while (sharedQueue.isEmpty()) {
-                isEmptyCondition.await();
-            }
-            System.out.printf("%d) Skonsumowano %s\n", sharedQueue.size(), sharedQueue.poll());
+        criticalSection(this::consumerExecute);
+    }
 
-            if (sharedQueue.isEmpty()) {
-                isFullCondition.signalAll();
-            }
-        });
+    private void produceInternal(DataItem dataItem) throws InterruptedException {
+        while (sharedQueue.size() >= maxSize) {
+            isFullCondition.await();
+        }
+        System.out.printf("%d) Wyprodukowano %s\n", sharedQueue.size() + 1, dataItem.toString());
+        sharedQueue.add(dataItem);
+
+        isEmptyCondition.signalAll();
+    }
+
+    private void consumerExecute() throws InterruptedException {
+        while (sharedQueue.isEmpty()) {
+            isEmptyCondition.await();
+        }
+        System.out.printf("%d) Skonsumowano %s\n", sharedQueue.size(), sharedQueue.poll());
+
+        if (sharedQueue.isEmpty()) {
+            isFullCondition.signalAll();
+        }
     }
 
     private void criticalSection(InteruptibleAction section) {
