@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.model.DataItem;
-import org.example.model.PrintMessageThread;
 import org.example.model.SharedBuffer;
 
 import java.time.LocalDateTime;
