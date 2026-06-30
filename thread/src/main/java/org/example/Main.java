@@ -11,8 +11,8 @@ import java.util.concurrent.Executors;
 public class Main {
     public final static int SIZE_BUFFER = 10;
     public final static int SIZE_EXECUTORS = 10;
-    public final static int COUNT_CONSUMMERS = 5;
-    public final static int COUNT_PRODUCERS = 1;
+    public final static int COUNT_CONSUMMERS = 3;
+    public final static int COUNT_PRODUCERS = 5;
 
     public static void main(String[] args) {
         SharedBuffer shop = new SharedBuffer(SIZE_BUFFER);
