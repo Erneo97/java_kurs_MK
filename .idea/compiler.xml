@@ -8,10 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="calculator" />
+        <module name="Bank" />
         <module name="homework" />
         <module name="libraryV2" />
         <module name="calculatorInterfaceFunction" />
-        <module name="thread" />
         <module name="enum" />
         <module name="vehicle" />
         <module name="library" />
